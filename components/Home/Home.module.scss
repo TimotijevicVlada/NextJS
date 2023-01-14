@@ -2,6 +2,7 @@
 
 .container {
     @include centerElement;
+    gap: 3rem;
 
     h1 {
         color: $color-white;

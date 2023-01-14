@@ -1,0 +1,24 @@
+//MIXINS
+
+//Shared mixins for all pages and components
+
+@mixin centerElement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 47.9375em) {
+            // Calculate em px / 16, example 600 / 16 = 37.5
+            @content;
+        } //767px
+    }
+
+    @if $breakpoint == overPhone {
+        @media only screen and (min-width: 48em) {
+            @content;
+        } //768px
+    }
+}

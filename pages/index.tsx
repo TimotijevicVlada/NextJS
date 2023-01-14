@@ -1,15 +1,16 @@
 import css from './index.module.scss';
-import { useRouter } from 'next/router';
 
+//components
+import App from 'components/App/App';
 
-export default function Home() {
+//components
+import Home from 'components/Home/Home';
 
-  const router = useRouter();
+export default function Index() {
 
   return (
-    <div className={css.container}>
-      <h1> MAIN PAGE</h1>
-      <button onClick={() => router.push("/todo-list")}>TODO LIST</button>
-    </div>
+    <App title="Home">
+      <Home />
+    </App>
   )
 }
