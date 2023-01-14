@@ -10,7 +10,9 @@ import { AppProps } from 'types/app';
 const App: React.FC<AppProps> = ({ children, title }) => {
     return (
         <div className={css.container}>
-            <Header />
+            <Header
+                title={title}
+            />
             {children}
         </div>
     )

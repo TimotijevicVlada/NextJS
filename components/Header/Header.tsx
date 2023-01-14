@@ -2,9 +2,17 @@ import React from 'react';
 import css from "./Header.module.scss";
 import { useRouter } from 'next/router';
 
-const Header = () => {
+//types
+import { HeaderProps } from 'types/header';
+
+const Header: React.FC<HeaderProps> = ({ title }) => {
 
     const router = useRouter();
+    const pages = [
+        { name: "Home", path: "/" },
+        { name: "Todo list", path: "/todo-list" },
+        { name: "Budget", path: "/budget" }
+    ]
 
     const reRuting = (route: string) => {
         router.push(route);
@@ -16,9 +24,11 @@ const Header = () => {
                 <h2>Next.JS</h2>
             </div>
             <div className={css.mainHeaderIcons}>
-                <span onClick={() => reRuting("/")}>Home</span>
-                <span onClick={() => reRuting("/todo-list")}>Todo</span>
-                <span onClick={() => reRuting("/")}>Settings</span>
+                {pages.map((item, index) => (
+                    <span key={index} onClick={() => reRuting(item.path)} className={item.path === router.pathname ? css.active : ""}>
+                        {item.name}
+                    </span>
+                ))}
             </div>
             <div className={css.headerUser}>
                 User
