@@ -1,9 +1,0 @@
-@import "styles/main.module.scss";
-
-.container {
-    @include centerElement;
-
-    h1 {
-        color: $color-white;
-    }
-}
