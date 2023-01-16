@@ -4,10 +4,15 @@ import css from "./Budget.module.scss";
 //redux
 import { useDispatch, useSelector } from 'react-redux';
 
+//types
+import { AllReducersProps } from '@/types/redux/allReducers';
+
 const Budget = () => {
 
     const dispatch = useDispatch();
-    const amount = useSelector((state: any) => state.budgetReducer.amount);
+    const budget = useSelector((state: AllReducersProps) => state.budgetReducer);
+    const { totalAmount, income, expenses } = budget;
+
 
     return (
         <div className={css.container}>

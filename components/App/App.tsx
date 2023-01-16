@@ -5,7 +5,7 @@ import css from "./App.module.scss";
 import Header from "components/Header/Header";
 
 //types
-import { AppProps } from 'types/app';
+import { AppProps } from 'types/components/app';
 
 const App: React.FC<AppProps> = ({ children, title }) => {
     return (

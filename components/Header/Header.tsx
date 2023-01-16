@@ -3,7 +3,7 @@ import css from "./Header.module.scss";
 import { useRouter } from 'next/router';
 
 //types
-import { HeaderProps } from 'types/header';
+import { HeaderProps } from '@/types/components/header';
 
 const Header: React.FC<HeaderProps> = ({ title }) => {
 
