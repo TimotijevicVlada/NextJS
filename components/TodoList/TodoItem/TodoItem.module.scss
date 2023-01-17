@@ -8,18 +8,32 @@
     border-radius: 1.5rem;
 
     .todoSubject {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         color: $color-white;
         margin-bottom: 0.5rem;
+
+        span {
+            color: $color-gray;
+        }
     }
 
     .todoBody {
         display: grid;
-        grid-template-columns: 5% 70% 20% 5%;
+        grid-template-columns: 5% 80% 15%;
         color: $color-gray;
 
+        .content {
+            span {
+                color: $color-primary;
+                cursor: pointer;
+            }
+        }
 
         .actions {
             display: flex;
+            justify-content: flex-end;
             svg {
                 width: 2rem;
                 height: 3rem;

@@ -34,7 +34,7 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ close }) => {
     setCreated(true);
     const timeout = setTimeout(() => {
       close();
-    }, 2500)
+    }, 3000)
     return () => clearTimeout(timeout);
   }
 
@@ -61,13 +61,10 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ close }) => {
         />
       </div>
       <div className={css.submitButton}>
-        <button type='submit'>Create new todo</button>
+        <button disabled={!!created} type='submit' className={created ? css.created : ""}>
+          {created ? "Todo has been created" : "Create new todo"}
+        </button>
       </div>
-      {created &&
-        <div className={css.createdTodo}>
-          New Todo has been created
-        </div>
-      }
     </form>
   )
 }
