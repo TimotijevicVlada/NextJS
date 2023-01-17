@@ -1,0 +1,44 @@
+@import "styles/main.module.scss";
+
+.container {
+    width: 20rem;
+    background-color: $color-black;
+    border-radius: 1.5rem;
+    @include centerElement;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+
+    h2 {
+        margin: 0;
+        color: $color-white;
+    }
+
+    p {
+        margin: 0;
+        color: $color-gray;
+    }
+
+    .itemName {
+        color: $color-primary;
+    }
+
+    .actionButtons {
+        display: flex;
+        gap: 2rem;
+
+        button {
+            border: 0.1rem solid $color-primary;
+            outline: none;
+            background-color: transparent;
+            width: 6rem;
+            padding: 0.5rem;
+            color: $color-white;
+            border-radius: 0.6rem;
+
+            &:hover {
+                background-color: $color-primary;
+            }
+        }
+    }
+}

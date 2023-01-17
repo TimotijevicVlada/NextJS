@@ -5,12 +5,16 @@ import css from "./CreateTodo.module.scss";
 import { v4 as uuid } from 'uuid';
 
 //redux
+import { useDispatch } from 'react-redux';
 import { addNewTodoAction } from '@/redux/actions/todosActions';
 
 //types
 import { CreateTodoProps } from '@/types/components/todos';
 
 const CreateTodo: React.FC<CreateTodoProps> = ({ close }) => {
+
+  //redux
+  const dispatch = useDispatch();
 
   //local state
   const [input, setInput] = useState({ subject: "", content: "" });
@@ -26,7 +30,7 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ close }) => {
       completed: false,
       created_at: new Date().toDateString()
     }
-    addNewTodoAction(newTodo);
+    dispatch(addNewTodoAction(newTodo));
     setCreated(true);
     const timeout = setTimeout(() => {
       close();

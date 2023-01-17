@@ -3,26 +3,24 @@ import css from "./TodoItem.module.scss";
 
 //components
 import Backdrop from '@/components/Backdrop/Backdrop';
+import ConfirmationAlert from '@/components/ConfirmationAlert/ConfirmationAlert';
 
 //assets
 import TrashIcon from "assets/trash-icon.svg";
 
 //redux
 import { deleteTodoAction } from '@/redux/actions/todosActions';
+import { useDispatch } from 'react-redux';
 
 //types
 import { TodoItemProps } from '@/types/components/todos';
 import { TodoProps } from '@/types/redux/todosReducer';
 
-const TodoItem: React.FC<any> = ({ index, todo }) => {
+const TodoItem: React.FC<TodoItemProps> = ({ index, todo }) => {
 
-    // const [deleteAlert, setDeleteAlert] = useState<null | TodoProps>(null);
+    const dispatch = useDispatch();
 
-    // const handleDeleteTodo = () => {
-    //     console.log("USAO U FUNKCIJU", deleteAlert?._id)
-    //     if (deleteAlert) deleteTodoAction(deleteAlert._id);
-    //     setDeleteAlert(null);
-    // }
+    const [itemToDelete, setItemToDelete] = useState<null | TodoProps>(null);
 
     return (
         <div className={css.container}>
@@ -32,23 +30,25 @@ const TodoItem: React.FC<any> = ({ index, todo }) => {
                 <div className={css.content}>{todo.content}</div>
                 <div className={css.created_at}>{todo.created_at}</div>
                 <div className={css.actions}>
-                    <div onClick={() => deleteTodoAction(todo._id)}>
+                    <div onClick={() => setItemToDelete(todo)}>
                         <TrashIcon />
                     </div>
                 </div>
             </div>
-            {/* {!!deleteAlert &&
+            {!!itemToDelete &&
                 <Backdrop
-                    children={
-                        <ConfirmationAlert
-                            close={() => setDeleteAlert(null)}
-                            itemToDelete={deleteAlert.subject}
-                            confirmAction={handleDeleteTodo}
-                        />
-                    }
-                    close={() => setDeleteAlert(null)}
+                    children={<ConfirmationAlert
+                        close={() => setItemToDelete(null)}
+                        text="You will delete"
+                        itemName={itemToDelete.subject}
+                        confirmAction={() => {
+                            dispatch(deleteTodoAction(itemToDelete._id));
+                            setItemToDelete(null)
+                        }}
+                    />}
+                    close={() => setItemToDelete(null)}
                 />
-            } */}
+            }
         </div>
     )
 }
