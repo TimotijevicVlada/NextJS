@@ -1,0 +1,23 @@
+@import "styles/main.module.scss";
+
+ .container {
+    @include centerElement;
+    flex-direction: column;
+    margin-top: 7rem;
+
+    svg {
+        width: 15rem;
+        height: 12rem;
+        margin-top: 0;
+
+        path {
+            stroke: $color-gray;
+            fill: transparent;
+        }
+    }
+    p {
+        margin-top: -0.5rem;
+        color: $color-gray;
+        font-size: 1.5rem;
+    }
+}

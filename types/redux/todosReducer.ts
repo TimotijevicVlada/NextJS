@@ -2,8 +2,9 @@ import { ADD_NEW_TODO } from "@/redux/actionTypes";
 
 export interface TodoProps {
     _id: string;
-    todo: string;
-    completed: false;
+    subject: string;
+    content: string;
+    completed: boolean;
     created_at: string;
 }
 
