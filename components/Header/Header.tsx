@@ -2,6 +2,11 @@ import React from 'react';
 import css from "./Header.module.scss";
 import { useRouter } from 'next/router';
 
+//assets
+import HomeIcon from "assets/home-icon.svg";
+import TodoIcon from "assets/todo-icon.svg";
+import BudgetIcon from "assets/money-icon.svg";
+
 //types
 import { HeaderProps } from '@/types/components/header';
 
@@ -9,9 +14,9 @@ const Header: React.FC<HeaderProps> = () => {
 
     const router = useRouter();
     const pages = [
-        { name: "Home", path: "/" },
-        { name: "Todo list", path: "/todo-list" },
-        { name: "Budget", path: "/budget" }
+        { name: "Home", path: "/", icon: <HomeIcon /> },
+        { name: "Todo list", path: "/todo-list", icon: < TodoIcon /> },
+        { name: "Budget", path: "/budget", icon: <BudgetIcon /> }
     ]
 
     const reRuting = (route: string) => {
@@ -26,7 +31,7 @@ const Header: React.FC<HeaderProps> = () => {
             <div className={css.mainHeaderIcons}>
                 {pages.map((item, index) => (
                     <span key={index} onClick={() => reRuting(item.path)} className={item.path === router.pathname ? css.active : ""}>
-                        {item.name}
+                        {item.icon}
                     </span>
                 ))}
             </div>
