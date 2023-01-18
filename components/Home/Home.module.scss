@@ -1,10 +1,11 @@
 @import "styles/main.module.scss";
 
 .container {
-    @include centerElement;
-    gap: 3rem;
+    min-height: calc(100vh - 8.5rem);
 
     h1 {
+        margin: 0;
+        @include centerElement;
         color: $color-white;
     }
 }

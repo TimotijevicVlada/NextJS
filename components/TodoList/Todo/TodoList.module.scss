@@ -1,6 +1,7 @@
 @import "styles/main.module.scss";
 
 .container {
+    min-height: calc(100vh - 8.5rem);
     .todoHeader {
         @include centerElement;
         gap: 2rem;

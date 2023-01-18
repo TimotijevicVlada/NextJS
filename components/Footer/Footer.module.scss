@@ -1,0 +1,9 @@
+@import "styles/main.module.scss";
+
+.container {
+    background-color: $color-black;
+    @include centerElement;
+    color: $color-gray;
+    height: 4rem;
+    font-size: 1.1rem;
+}

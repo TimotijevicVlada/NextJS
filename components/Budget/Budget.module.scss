@@ -1,9 +1,11 @@
 @import "styles/main.module.scss";
 
 .container {
-    @include centerElement;
+    min-height: calc(100vh - 8.5rem);
     
     h1 {
+        margin: 0;
+        text-align: center;
         color: $color-white;
     }
 }

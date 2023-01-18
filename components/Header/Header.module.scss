@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background-color: $color-black;
+    height: 4.5rem;
 
     .headerLogo {
         @include centerElement;
@@ -13,6 +14,7 @@
             color: $color-white;
             padding: 0.5rem 2rem;
             border-radius: 3rem;
+            margin: 0
         }
     }
 
