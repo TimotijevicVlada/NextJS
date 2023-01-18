@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 //types
 import { HeaderProps } from '@/types/components/header';
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const Header: React.FC<HeaderProps> = () => {
 
     const router = useRouter();
     const pages = [

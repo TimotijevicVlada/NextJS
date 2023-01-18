@@ -1,5 +1,5 @@
 import React from 'react';
-import css from "./App.module.scss";
+import css from "./Layout.module.scss";
 
 //components
 import Header from "components/Header/Header";
@@ -7,15 +7,13 @@ import Header from "components/Header/Header";
 //types
 import { AppProps } from 'types/components/app';
 
-const App: React.FC<AppProps> = ({ children, title }) => {
+const Layout: React.FC<AppProps> = ({ children }) => {
     return (
         <div className={css.container}>
-            <Header
-                title={title}
-            />
+            <Header />
             {children}
         </div>
     )
 }
 
-export default App;
+export default Layout;
