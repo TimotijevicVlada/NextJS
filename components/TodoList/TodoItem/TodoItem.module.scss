@@ -1,11 +1,14 @@
 @import "styles/main.module.scss";
 
 .container {
-    width: 40rem;
     background-color: $color-black;
     margin-bottom: 1rem;
     padding: 1rem 2rem;
     border-radius: 1.5rem;
+
+    &:last-child {
+        margin-bottom: 0rem;
+    }
 
     .todoSubject {
         display: flex;

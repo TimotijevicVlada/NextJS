@@ -13,3 +13,7 @@ export interface UpdateTodoModalProps {
     itemToUpdate: TodoProps;
     close: () => void;
 }
+
+export interface TodoContentProps {
+    todos: TodoProps[];
+}

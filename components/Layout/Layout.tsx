@@ -9,6 +9,7 @@ import Footer from "components/Footer/Footer";
 import { AppProps } from 'types/components/app';
 
 const Layout: React.FC<AppProps> = ({ children }) => {
+
     return (
         <div className={css.container}>
             <Header />
