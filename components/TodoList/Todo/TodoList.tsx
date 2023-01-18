@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import css from "./TodoList.module.scss";
 
 //components
-import CreateTodo from '../CreateTodo/CreateTodo';
+import CreateTodoModal from '../CreateTodoModal/CreateTodoModal';
 import Backdrop from '@/components/Backdrop/Backdrop';
 import NoData from '@/components/NoData/NoData';
 import TodoItem from '../TodoItem/TodoItem';
@@ -54,7 +54,7 @@ const TodoList = () => {
             {createTodoModal &&
                 <Backdrop
                     children={
-                        <CreateTodo
+                        <CreateTodoModal
                             close={() => setCreateTodoModal(false)}
                         />
                     }

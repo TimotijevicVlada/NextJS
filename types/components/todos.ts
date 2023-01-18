@@ -5,6 +5,11 @@ export interface TodoItemProps {
     todo: TodoProps;
 }
 
-export interface CreateTodoProps {
+export interface CreateTodoModalProps {
+    close: () => void;
+}
+
+export interface UpdateTodoModalProps {
+    itemToUpdate: TodoProps;
     close: () => void;
 }

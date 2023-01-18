@@ -1,4 +1,4 @@
-import { ADD_NEW_TODO, DELETE_TODO } from "../actionTypes"
+import { ADD_NEW_TODO, DELETE_TODO, UPDATE_TODO, CHECK_TODO } from "../actionTypes"
 import { TodoProps } from "@/types/redux/todosReducer";
 
 export const addNewTodoAction = (newTodo: TodoProps) => ({
@@ -8,5 +8,15 @@ export const addNewTodoAction = (newTodo: TodoProps) => ({
 
 export const deleteTodoAction = (_id: string) => ({
     type: DELETE_TODO,
+    payload: _id
+})
+
+export const updateTodoAction = (updatedTodo: TodoProps) => ({
+    type: UPDATE_TODO,
+    payload: updatedTodo
+})
+
+export const checkTodoAction = (_id: string) => ({
+    type: CHECK_TODO,
     payload: _id
 })

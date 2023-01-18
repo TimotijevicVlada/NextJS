@@ -3,13 +3,17 @@ import css from "./TodoItem.module.scss";
 
 //components
 import Backdrop from '@/components/Backdrop/Backdrop';
+import UpdateTodoModal from '../UpdateTodoModal/UpdateTodoModal';
 import ConfirmationAlert from '@/components/ConfirmationAlert/ConfirmationAlert';
 
 //assets
 import TrashIcon from "assets/trash-icon.svg";
+import EditIcon from "assets/edit-icon.svg";
+import CheckIcon from "assets/check-icon.svg";
 
 //redux
 import { deleteTodoAction } from '@/redux/actions/todosActions';
+import { checkTodoAction } from '@/redux/actions/todosActions';
 import { useDispatch } from 'react-redux';
 
 //types
@@ -21,6 +25,8 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo }) => {
     const dispatch = useDispatch();
 
     const [itemToDelete, setItemToDelete] = useState<null | TodoProps>(null);
+    const [itemToUpdate, setItemToUpdate] = useState<null | TodoProps>(null);
+    const [itemToCheck, setItemToCheck] = useState<null | TodoProps>(null);
     const [slicedContent, setSlicedContent] = useState(false);
 
     useEffect(() => {
@@ -45,7 +51,13 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo }) => {
                         </span>}
                 </div>
                 <div className={css.actions}>
-                    <div onClick={() => setItemToDelete(todo)}>
+                    <div onClick={() => setItemToCheck(todo)} className={`${css.checkIcon} ${todo.completed ? css.completed : ""}`}>
+                        <CheckIcon />
+                    </div>
+                    <div onClick={() => setItemToUpdate(todo)} className={css.editIcon} >
+                        <EditIcon />
+                    </div>
+                    <div onClick={() => setItemToDelete(todo)} className={css.trashIcon}>
                         <TrashIcon />
                     </div>
                 </div>
@@ -58,10 +70,33 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo }) => {
                         itemName={itemToDelete.subject}
                         confirmAction={() => {
                             dispatch(deleteTodoAction(itemToDelete._id));
-                            setItemToDelete(null)
+                            setItemToDelete(null);
                         }}
                     />}
                     close={() => setItemToDelete(null)}
+                />
+            }
+            {!!itemToUpdate &&
+                <Backdrop
+                    children={<UpdateTodoModal
+                        itemToUpdate={itemToUpdate}
+                        close={() => setItemToUpdate(null)}
+                    />}
+                    close={() => setItemToUpdate(null)}
+                />
+            }
+            {!!itemToCheck &&
+                <Backdrop
+                    children={<ConfirmationAlert
+                        close={() => setItemToCheck(null)}
+                        text={`You will ${itemToCheck.completed ? "uncheck" : "check"}`}
+                        itemName={itemToCheck.subject}
+                        confirmAction={() => {
+                            dispatch(checkTodoAction(itemToCheck._id));
+                            setItemToCheck(null);
+                        }}
+                    />}
+                    close={() => setItemToCheck(null)}
                 />
             }
         </div>

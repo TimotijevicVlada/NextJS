@@ -3,7 +3,7 @@
 .container {
     position: relative;
     width: 30rem;
-    background-color: $color-black;
+    background-color: $color-modal-background;
     border-radius: 1.7rem;
     color: $color-white;
     display: flex;
@@ -53,6 +53,7 @@
             padding: 1rem;
             border-radius: 1rem;
             color: $color-white;
+            @include smallScrollbar;
         }
     }
 

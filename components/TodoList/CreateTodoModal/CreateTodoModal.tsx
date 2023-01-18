@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import css from "./CreateTodo.module.scss";
+import css from "./CreateTodoModal.module.scss";
 
 //uuid
 import { v4 as uuid } from 'uuid';
@@ -9,9 +9,9 @@ import { useDispatch } from 'react-redux';
 import { addNewTodoAction } from '@/redux/actions/todosActions';
 
 //types
-import { CreateTodoProps } from '@/types/components/todos';
+import { CreateTodoModalProps } from '@/types/components/todos';
 
-const CreateTodo: React.FC<CreateTodoProps> = ({ close }) => {
+const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ close }) => {
 
   //redux
   const dispatch = useDispatch();
@@ -69,4 +69,4 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ close }) => {
   )
 }
 
-export default CreateTodo;
+export default CreateTodoModal;

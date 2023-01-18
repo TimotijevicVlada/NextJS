@@ -21,7 +21,7 @@
 
     .todoBody {
         display: grid;
-        grid-template-columns: 5% 80% 15%;
+        grid-template-columns: 5% 75% 20%;
         color: $color-gray;
 
         .content {
@@ -34,13 +34,47 @@
         .actions {
             display: flex;
             justify-content: flex-end;
-            svg {
-                width: 2rem;
-                height: 3rem;
-                cursor: pointer;
+            gap: 0.5rem;
 
-                path {
-                    stroke: $color-red;
+            .checkIcon {
+                svg {
+                    width: 1.7rem;
+                    height: 1.8rem;
+                    cursor: pointer;
+
+                    path {
+                        fill: $color-gray;
+                    }
+                }
+
+                &.completed {
+                    svg {
+                        path {
+                            fill: $color-green;
+                        }
+                    }
+                }
+            }
+
+            .editIcon {
+                svg {
+                    width: 2rem;
+                    height: 1.8rem;
+
+                    cursor: pointer;
+                }
+            }
+
+            .trashIcon {
+                svg {
+                    width: 1.8rem;
+                    height: 1.8rem;
+
+                    cursor: pointer;
+
+                    path {
+                        stroke: $color-red;
+                    }
                 }
             }
         }

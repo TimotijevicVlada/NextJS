@@ -1,4 +1,4 @@
-import { ADD_NEW_TODO, DELETE_TODO } from "../actionTypes";
+import { ADD_NEW_TODO, DELETE_TODO, UPDATE_TODO, CHECK_TODO } from "../actionTypes";
 import { TodosReducerProps, TodosActionsProps } from "@/types/redux/todosReducer";
 
 const initialState = {
@@ -18,6 +18,18 @@ export const todosReducer = (state: TodosReducerProps = initialState, action: To
             return {
                 ...state,
                 todos: deletedTodo
+            }
+        case UPDATE_TODO:
+            const updatedTodos = state.todos.map(item => item._id === action.payload._id ? action.payload : item);
+            return {
+                ...state,
+                todos: updatedTodos
+            }
+        case CHECK_TODO:
+            const checkTodo = state.todos.map(item => item._id === action.payload ? { ...item, completed: !item.completed } : item)
+            return {
+                ...state,
+                todos: checkTodo
             }
         default:
             return state;

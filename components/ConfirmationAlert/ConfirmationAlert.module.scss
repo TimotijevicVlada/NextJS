@@ -2,7 +2,7 @@
 
 .container {
     width: 20rem;
-    background-color: $color-black;
+    background-color: $color-modal-background;
     border-radius: 1.5rem;
     @include centerElement;
     flex-direction: column;

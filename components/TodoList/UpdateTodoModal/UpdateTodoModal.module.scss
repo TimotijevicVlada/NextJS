@@ -1,0 +1,78 @@
+@import "styles/main.module.scss";
+
+.container {
+    position: relative;
+    width: 30rem;
+    background-color: $color-modal-background;
+    border-radius: 1.7rem;
+    color: $color-white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+
+    h2 {
+        text-align: center;
+    }
+
+    .subject {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+
+        label {
+            margin-bottom: 1rem;
+        }
+
+        input {
+            background-color: $color-gray;
+            border: none;
+            outline: none;
+            font-size: 1.2rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            color: $color-white;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+        label {
+            margin-bottom: 1rem;
+        }
+
+        textarea {
+            resize: none;
+            background-color: $color-gray;
+            border: none;
+            outline: none;
+            height: 10rem;
+            font-size: 1.2rem;
+            padding: 1rem;
+            border-radius: 1rem;
+            color: $color-white;
+            @include smallScrollbar;
+        }
+    }
+
+    .submitButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button {
+            width: 100%;
+            background-color: $color-primary;
+            font-size: 1.3rem;
+            border: none;
+            color: white;
+            padding: 1rem;
+            border-radius: 1rem;
+
+            &.updated {
+                background-color: $color-green;
+            }
+        }
+    }
+}
