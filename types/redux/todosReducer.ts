@@ -1,4 +1,4 @@
-import { ADD_NEW_TODO, DELETE_TODO, UPDATE_TODO, CHECK_TODO } from "@/redux/actionTypes";
+import { ActionType } from "@/redux/actionTypes";
 
 export interface TodoProps {
     _id: string;
@@ -19,22 +19,22 @@ export interface TodosReducerProps {
 
 //REDUCER PROPS
 interface AddNewTodoActionProps {
-    type: typeof ADD_NEW_TODO;
+    type: typeof ActionType.ADD_NEW_TODO;
     payload: TodoProps;
 }
 
 interface DeleteTodoActionProps {
-    type: typeof DELETE_TODO;
+    type: typeof ActionType.DELETE_TODO;
     payload: string;
 }
 
 interface UpdateTodoActionProps {
-    type: typeof UPDATE_TODO;
+    type: typeof ActionType.UPDATE_TODO;
     payload: TodoProps;
 }
 
 interface CheckTodoActionProps {
-    type: typeof CHECK_TODO;
+    type: typeof ActionType.CHECK_TODO;
     payload: string;
 }
 

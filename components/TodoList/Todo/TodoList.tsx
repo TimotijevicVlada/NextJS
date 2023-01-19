@@ -9,12 +9,12 @@ import TodoContent from '../TodoContent/TodoContent';
 import { useSelector } from 'react-redux';
 
 //types
-import { AllReducersProps } from '@/types/redux/allReducers';
+import { State } from '@/redux/store';
 
 const TodoList = () => {
 
     //redux
-    const todosReducer = useSelector((state: AllReducersProps) => state.todosReducer);
+    const todosReducer = useSelector((state: State) => state.todosReducer);
     const { todos } = todosReducer;
 
     return (

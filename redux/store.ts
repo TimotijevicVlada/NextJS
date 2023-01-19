@@ -8,8 +8,10 @@ import { todosReducer } from './reducers/todosReducer';
 
 
 export const reducers = combineReducers({
-    budgetReducer: budgetReducer,
-    todosReducer: todosReducer
-  });
+  budgetReducer: budgetReducer,
+  todosReducer: todosReducer
+});
 
 export const store = createStore(reducers, composeWithDevTools(applyMiddleware(reduxThunk)));
+
+export type State = ReturnType<typeof reducers>;
