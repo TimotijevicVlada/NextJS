@@ -6,19 +6,18 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CaracterItem from '../CaracterItem/CaracterItem';
 
 //redux
-import { getCaracters, getCaractersPagination } from 'redux/actions/caractersActions';
 import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
+import * as caractersActions from "redux/actions/caractersActions";
 
 //types
-import { State } from '@/redux/store';
+import { State } from 'redux/store';
 
 const Caracters = () => {
 
     //redux
     const dispatch = useDispatch();
-    const fetchCaracters = bindActionCreators(getCaracters, dispatch);
-    const fetchCaractersPagination = bindActionCreators(getCaractersPagination, dispatch);
+    const { getCaracters, getCaractersPagination } = bindActionCreators(caractersActions, dispatch);
     const state = useSelector((state: State) => state.caractersReducer);
     const { info, results } = state;
 
@@ -28,13 +27,13 @@ const Caracters = () => {
     useEffect(() => {
         //Here I need to add Abort Controler
         if (page > 1) return;
-        fetchCaracters();
+        getCaracters();
     }, []);
 
     useEffect(() => {
         //Here I need to add Abort Controler
         if (page === 1) return;
-        fetchCaractersPagination(page);
+        getCaractersPagination(page);
     }, [page]);
 
     return (
