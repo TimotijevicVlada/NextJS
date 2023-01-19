@@ -47,4 +47,13 @@ interface GetCaractersErrorActionProps {
     type: ActionType.GET_CARACTERS_ERROR;
 }
 
-export type CaractersActionsProps = GetCaractersActionProps | GetCaractersErrorActionProps;
+interface GetCaractersPaginationActionProps {
+    type: ActionType.GET_CARACTERS_PAGINATION;
+    payload: CaracterProps;
+}
+
+interface GetCaractersPaginationErrorActionProps {
+    type: ActionType.GET_CARACTERS_PAGINATION_ERROR;
+}
+
+export type CaractersActionsProps = GetCaractersActionProps | GetCaractersErrorActionProps | GetCaractersPaginationActionProps | GetCaractersPaginationErrorActionProps;

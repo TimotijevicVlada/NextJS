@@ -14,7 +14,13 @@ export const caractersReducer = (state: CaracterProps = INITIAL_STATE, action: C
                 info: action.payload.info,
                 results: action.payload.results
             }
-
+        case ActionType.GET_CARACTERS_PAGINATION:
+            const newResults = state.results.concat(action.payload.results);
+            return {
+                ...state,
+                info: action.payload.info,
+                results: newResults
+            }
         default:
             return state;
     }
