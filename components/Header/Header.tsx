@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import HomeIcon from "assets/home-icon.svg";
 import TodoIcon from "assets/todo-icon.svg";
 import BudgetIcon from "assets/money-icon.svg";
+import UserIcon from "assets/user-icon.svg";
+import CaractersIcon from "assets/caracters-icon.svg";
 
 //types
 import { HeaderProps } from '@/types/components/header';
@@ -16,7 +18,8 @@ const Header: React.FC<HeaderProps> = () => {
     const pages = [
         { name: "Home", path: "/", icon: <HomeIcon /> },
         { name: "Todo list", path: "/todo-list", icon: < TodoIcon /> },
-        { name: "Budget", path: "/budget", icon: <BudgetIcon /> }
+        { name: "Budget", path: "/budget", icon: <BudgetIcon /> },
+        { name: "Caracters", path: "/caracters", icon: <CaractersIcon /> }
     ]
 
     const reRuting = (route: string) => {
@@ -36,7 +39,7 @@ const Header: React.FC<HeaderProps> = () => {
                 ))}
             </div>
             <div className={css.headerUser}>
-                User
+                <UserIcon />
             </div>
         </div>
     )

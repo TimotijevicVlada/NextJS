@@ -38,7 +38,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo }) => {
     return (
         <div className={css.container}>
             <div className={css.todoSubject}>
-                <h3>{todo.subject}</h3>
+                <h3>{todo.subject} {todo.edited && <span>(edited)</span>}</h3>
                 <span>{todo.created_at}</span>
             </div>
             <div className={css.todoBody}>

@@ -28,13 +28,14 @@ const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ close }) => {
       subject: input.subject,
       content: input.content,
       completed: false,
+      edited: false,
       created_at: new Date().toDateString()
     }
     dispatch(addNewTodoAction(newTodo));
     setCreated(true);
     const timeout = setTimeout(() => {
       close();
-    }, 3000)
+    }, 1500)
     return () => clearTimeout(timeout);
   }
 

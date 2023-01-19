@@ -79,6 +79,24 @@
                     }
                 }
             }
+
+            &:nth-child(4) {
+                svg {
+                    width: 2rem;
+                    height: 2rem;
+
+                    path {
+                        stroke: $color-gray;
+                    }
+                }
+
+                &.active,
+                &:hover {
+                    path {
+                        stroke: $color-primary;
+                    }
+                }
+            }
         }
     }
 

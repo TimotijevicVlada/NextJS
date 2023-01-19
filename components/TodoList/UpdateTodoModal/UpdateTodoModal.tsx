@@ -34,13 +34,14 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({ itemToUpdate, close }
             ...itemToUpdate,
             subject: input.subject,
             content: input.content,
+            edited: true,
             created_at: new Date().toDateString()
         }
         dispatch(updateTodoAction(updatedTodo));
         setUpdated(true);
         const timeout = setTimeout(() => {
             close();
-        }, 3000)
+        }, 1500)
         return () => clearTimeout(timeout);
     }
 

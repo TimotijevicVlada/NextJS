@@ -5,6 +5,7 @@ export interface TodoProps {
     subject: string;
     content: string;
     completed: boolean;
+    edited: boolean;
     created_at: string;
 }
 
