@@ -1,8 +1,15 @@
-import React from 'react'
+import React from 'react';
+import css from "./CaracterItem.module.scss";
 
-const CaracterItem = () => {
+//types
+import { CaracterItemProps } from '@/types/redux/caractersReducer';
+
+
+const CaracterItem: React.FC<CaracterItemProps> = ({ caracter }) => {
   return (
-    <div>CaracterItem</div>
+    <div className={css.container}>
+      <img src={caracter.image} alt={caracter.name} />
+    </div>
   )
 }
 

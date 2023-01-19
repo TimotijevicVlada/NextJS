@@ -20,22 +20,22 @@ export interface TodosReducerProps {
 
 //REDUCER PROPS
 interface AddNewTodoActionProps {
-    type: typeof ActionType.ADD_NEW_TODO;
+    type: ActionType.ADD_NEW_TODO;
     payload: TodoProps;
 }
 
 interface DeleteTodoActionProps {
-    type: typeof ActionType.DELETE_TODO;
+    type: ActionType.DELETE_TODO;
     payload: string;
 }
 
 interface UpdateTodoActionProps {
-    type: typeof ActionType.UPDATE_TODO;
+    type: ActionType.UPDATE_TODO;
     payload: TodoProps;
 }
 
 interface CheckTodoActionProps {
-    type: typeof ActionType.CHECK_TODO;
+    type: ActionType.CHECK_TODO;
     payload: string;
 }
 
