@@ -2,10 +2,10 @@
 
 .container {
     min-height: calc(100vh - 8.5rem);
+    @include centerElement;
 
-    .singleCaracter {
-        width: 50rem;
-        background-color: $color-black;
-        margin: 0 auto;
+    .loading {
+        color: $color-white;
+        font-size: 2rem;
     }
 }

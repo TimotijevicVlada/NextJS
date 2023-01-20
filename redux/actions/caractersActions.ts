@@ -27,10 +27,13 @@ export const getCaractersPaginationAction = (page: number) => async (dispatch: D
 }
 
 export const getSingleCaracterAction = (id: string | string[]) => async (dispatch: Dispatch<CaractersActionsProps>) => {
+    dispatch({ type: ActionType.GET_SINGLE_CARACTER_LOADING, payload: true })
     try {
         const response = await axios.get(`${Route.getCaracters}/${id}`);
         dispatch({ type: ActionType.GET_SINGLE_CARACTER, payload: response.data });
     } catch (error) {
         dispatch({ type: ActionType.GET_SINGLE_CARACTER_ERROR });
+    } finally {
+        dispatch({ type: ActionType.GET_SINGLE_CARACTER_LOADING, payload: false })
     }
 }

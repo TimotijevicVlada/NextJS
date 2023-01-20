@@ -4,7 +4,8 @@ import { CaractersActionsProps, CaracterProps } from "@/types/redux/caractersRed
 const INITIAL_STATE = {
     info: null,
     results: [],
-    singleCaracter: null
+    singleCaracter: null,
+    loading: false  //singleCaracter loader
 }
 
 export const caractersReducer = (state: CaracterProps = INITIAL_STATE, action: CaractersActionsProps) => {
@@ -26,6 +27,11 @@ export const caractersReducer = (state: CaracterProps = INITIAL_STATE, action: C
             return {
                 ...state,
                 singleCaracter: action.payload
+            }
+        case ActionType.GET_SINGLE_CARACTER_LOADING:
+            return {
+                ...state,
+                loading: action.payload
             }
         default:
             return state;

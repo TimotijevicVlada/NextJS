@@ -1,10 +1,12 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import css from "./SingleCaracter.module.scss";
 import { useRouter } from 'next/router';
 
+//components
+import SingleCaracterItem from '../SingleCaracterItem/SingleCaracterItem';
+
 //redux
 import * as caractersActions from "redux/actions/caractersActions";
-
 import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -20,7 +22,7 @@ const SingleCaracter = () => {
     const dispatch = useDispatch();
     const { getSingleCaracterAction } = bindActionCreators(caractersActions, dispatch);
     const state = useSelector((state: State) => state.caractersReducer);
-    const { singleCaracter } = state;
+    const { singleCaracter, loading } = state;
 
     useEffect(() => {
         //Need to put Abortcontroller here 
@@ -31,9 +33,14 @@ const SingleCaracter = () => {
 
     return (
         <div className={css.container}>
-            <div className={css.singleCaracter}>
-                Caracter
-            </div>
+            {loading ?
+                <div className={css.loading}>Loading...</div>
+                :
+                singleCaracter &&
+                <SingleCaracterItem
+                    singleCaracter={singleCaracter}
+                />
+            }
         </div>
     )
 }

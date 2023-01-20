@@ -1,42 +1,13 @@
 import { ActionType } from "@/redux/actionTypes";
-
-interface Info {
-    count: number;
-    next: string;
-    pages: number;
-    prev: null | string;
-}
-
-export interface Caracter {
-    created: string;
-    episode: string[];
-    gender: string;
-    id: number;
-    image: string;
-    location: {
-        name: string;
-        url: string;
-    }
-    name: string;
-    origin: {
-        name: string;
-        url: string;
-    }
-    species: string;
-    status: string;
-    type: string;
-    url: string;
-}
-
+import { Info, Caracter } from "../components/caracters";
 export interface CaracterItemProps {
     caracter: Caracter;
 }
-
-//REDUX
 export interface CaracterProps {
     info: Info | null;
     results: Caracter[];
     singleCaracter: Caracter | null;
+    loading: boolean;
 }
 
 interface GetCaractersActionProps {
@@ -66,10 +37,16 @@ interface getSingleCaracterErrorActionProps {
     type: ActionType.GET_SINGLE_CARACTER_ERROR;
 }
 
+interface getSingleCaracterLoadingProps {
+    type: ActionType.GET_SINGLE_CARACTER_LOADING;
+    payload: boolean;
+}
+
 export type CaractersActionsProps =
     GetCaractersActionProps |
     GetCaractersErrorActionProps |
     GetCaractersPaginationActionProps |
     GetCaractersPaginationErrorActionProps |
     getSingleCaracterActionProps |
-    getSingleCaracterErrorActionProps;
+    getSingleCaracterErrorActionProps |
+    getSingleCaracterLoadingProps;
