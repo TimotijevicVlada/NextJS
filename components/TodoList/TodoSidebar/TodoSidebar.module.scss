@@ -7,26 +7,44 @@
     padding: 1rem;
 
     .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        .sidebarHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
 
-        h2 {
-            color: $color-gray;
-            margin: 0;
-            font-size: 1.8rem;
+            h2 {
+                color: $color-gray;
+                margin: 0;
+                font-size: 1.8rem;
+            }
+
+            button {
+                color: $color-white;
+
+                svg {
+                    width: 3.5rem;
+                    height: 3.5rem;
+
+                    path {
+                        stroke: $color-primary;
+                    }
+                }
+            }
         }
 
-        button {
+        .completedButton {
             color: $color-white;
+            font-size: 1.3rem;
+            background-color: $color-gray;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 1rem;
+            outline: none;
+            border: none;
 
-            svg {
-                width: 3.5rem;
-                height: 3.5rem;
-
-                path {
-                    stroke: $color-primary;
-                }
+            &.active {
+                background-color: $color-primary;
             }
         }
     }

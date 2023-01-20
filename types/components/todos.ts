@@ -17,3 +17,8 @@ export interface UpdateTodoModalProps {
 export interface TodoContentProps {
     todos: TodoProps[];
 }
+
+export interface TodoSidebarProps {
+    completed: boolean;
+    setCompleted: (completed: boolean) => void;
+}

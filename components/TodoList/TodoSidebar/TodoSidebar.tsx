@@ -8,7 +8,10 @@ import Backdrop from '@/components/Backdrop/Backdrop';
 //assets
 import CreateTodoIcon from "assets/plus-icon.svg";
 
-const TodoSidebar = () => {
+//types
+import { TodoSidebarProps } from '@/types/components/todos';
+
+const TodoSidebar: React.FC<TodoSidebarProps> = ({ completed, setCompleted }) => {
 
     //local state
     const [createTodoModal, setCreateTodoModal] = useState<boolean>(false);
@@ -16,9 +19,15 @@ const TodoSidebar = () => {
     return (
         <div className={css.container}>
             <div className={css.header}>
-                <h2>Todo List</h2>
-                <button onClick={() => setCreateTodoModal(true)}>
-                    <CreateTodoIcon />
+                <div className={css.sidebarHeader}>
+                    <h2>Todo List</h2>
+                    <button onClick={() => setCreateTodoModal(true)}>
+                        <CreateTodoIcon />
+                    </button>
+                </div>
+                <button onClick={() => setCompleted(!completed)}
+                    className={`${css.completedButton} ${completed ? css.active : ""}`}>
+                    Completed
                 </button>
             </div>
 
