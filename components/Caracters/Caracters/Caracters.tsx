@@ -17,7 +17,7 @@ const Caracters = () => {
 
     //redux
     const dispatch = useDispatch();
-    const { getCaracters, getCaractersPagination } = bindActionCreators(caractersActions, dispatch);
+    const { getCaractersAction, getCaractersPaginationAction } = bindActionCreators(caractersActions, dispatch);
     const state = useSelector((state: State) => state.caractersReducer);
     const { info, results } = state;
 
@@ -27,13 +27,13 @@ const Caracters = () => {
     useEffect(() => {
         //Here I need to add Abort Controler
         if (page > 1) return;
-        getCaracters();
+        getCaractersAction();
     }, []);
 
     useEffect(() => {
         //Here I need to add Abort Controler
         if (page === 1) return;
-        getCaractersPagination(page);
+        getCaractersPaginationAction(page);
     }, [page]);
 
     return (

@@ -4,7 +4,7 @@ import { Dispatch } from "redux";
 import { ActionType } from "../actionTypes";
 import { CaractersActionsProps } from "@/types/redux/caractersReducer";
 
-export const getCaracters = () => async (dispatch: Dispatch<CaractersActionsProps>) => {
+export const getCaractersAction = () => async (dispatch: Dispatch<CaractersActionsProps>) => {
     try {
         const response = await axios.get(Route.getCaracters);
         dispatch({ type: ActionType.GET_CARACTERS, payload: response.data });
@@ -15,7 +15,7 @@ export const getCaracters = () => async (dispatch: Dispatch<CaractersActionsProp
     }
 }
 
-export const getCaractersPagination = (page: number) => async (dispatch: Dispatch<CaractersActionsProps>) => {
+export const getCaractersPaginationAction = (page: number) => async (dispatch: Dispatch<CaractersActionsProps>) => {
     try {
         const response = await axios.get(Route.getCaracters, { params: { page: page } });
         dispatch({ type: ActionType.GET_CARACTERS_PAGINATION, payload: response.data });
@@ -23,5 +23,14 @@ export const getCaractersPagination = (page: number) => async (dispatch: Dispatc
         dispatch({ type: ActionType.GET_CARACTERS_PAGINATION_ERROR });
     } finally {
 
+    }
+}
+
+export const getSingleCaracterAction = (id: string | string[]) => async (dispatch: Dispatch<CaractersActionsProps>) => {
+    try {
+        const response = await axios.get(`${Route.getCaracters}/${id}`);
+        dispatch({ type: ActionType.GET_SINGLE_CARACTER, payload: response.data });
+    } catch (error) {
+        dispatch({ type: ActionType.GET_SINGLE_CARACTER_ERROR });
     }
 }

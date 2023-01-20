@@ -36,6 +36,7 @@ export interface CaracterItemProps {
 export interface CaracterProps {
     info: Info | null;
     results: Caracter[];
+    singleCaracter: Caracter | null;
 }
 
 interface GetCaractersActionProps {
@@ -56,4 +57,19 @@ interface GetCaractersPaginationErrorActionProps {
     type: ActionType.GET_CARACTERS_PAGINATION_ERROR;
 }
 
-export type CaractersActionsProps = GetCaractersActionProps | GetCaractersErrorActionProps | GetCaractersPaginationActionProps | GetCaractersPaginationErrorActionProps;
+interface getSingleCaracterActionProps {
+    type: ActionType.GET_SINGLE_CARACTER;
+    payload: Caracter;
+}
+
+interface getSingleCaracterErrorActionProps {
+    type: ActionType.GET_SINGLE_CARACTER_ERROR;
+}
+
+export type CaractersActionsProps =
+    GetCaractersActionProps |
+    GetCaractersErrorActionProps |
+    GetCaractersPaginationActionProps |
+    GetCaractersPaginationErrorActionProps |
+    getSingleCaracterActionProps |
+    getSingleCaracterErrorActionProps;

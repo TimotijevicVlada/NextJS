@@ -1,0 +1,11 @@
+@import "styles/main.module.scss";
+
+.container {
+    min-height: calc(100vh - 8.5rem);
+
+    .singleCaracter {
+        width: 50rem;
+        background-color: $color-black;
+        margin: 0 auto;
+    }
+}

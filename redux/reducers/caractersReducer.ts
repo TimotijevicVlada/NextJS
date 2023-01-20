@@ -3,7 +3,8 @@ import { CaractersActionsProps, CaracterProps } from "@/types/redux/caractersRed
 
 const INITIAL_STATE = {
     info: null,
-    results: []
+    results: [],
+    singleCaracter: null
 }
 
 export const caractersReducer = (state: CaracterProps = INITIAL_STATE, action: CaractersActionsProps) => {
@@ -20,6 +21,11 @@ export const caractersReducer = (state: CaracterProps = INITIAL_STATE, action: C
                 ...state,
                 info: action.payload.info,
                 results: newResults
+            }
+        case ActionType.GET_SINGLE_CARACTER:
+            return {
+                ...state,
+                singleCaracter: action.payload
             }
         default:
             return state;
