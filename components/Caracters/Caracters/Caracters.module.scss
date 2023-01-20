@@ -3,16 +3,32 @@
 .container {
     min-height: calc(100vh - 8.5rem);
 
+    .loading {
+        margin: 2rem auto;
+        width: 50rem;
+        height: 40rem;
+        @include centerElement;
+        font-size: 2rem;
+        color: $color-white;
+    }
+
     .caractersHeader {
         background-color: $color-black;
-        width: 50rem;
+        width: 46rem;
         height: 5rem;
         color: $color-gray;
         margin: 2rem auto;
-        display: grid;
-        place-items: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         border-radius: 1.5rem;
         font-size: 1.5rem;
+        padding: 0rem 2rem;
+
+        h2 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
     }
 
     .infiniteScroll {
@@ -21,5 +37,15 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 1rem;
+        position: relative;
+
+        .loader {
+            color: $color-white;
+            font-size: 1.5rem;
+            position: absolute;
+            bottom: 0rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
     }
 }

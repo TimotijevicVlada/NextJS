@@ -5,9 +5,10 @@
     border-radius: 1.3rem;
     overflow: hidden;
     cursor: pointer;
+    aspect-ratio: 1/1;
 
     img { 
         width: 100%;
-        aspect-ratio: 1/1;
+        height: 100%;
     }
 }

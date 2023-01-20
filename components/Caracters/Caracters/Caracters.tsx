@@ -19,7 +19,7 @@ const Caracters = () => {
     const dispatch = useDispatch();
     const { getCaractersAction, getCaractersPaginationAction } = bindActionCreators(caractersActions, dispatch);
     const state = useSelector((state: State) => state.caractersReducer);
-    const { info, results } = state;
+    const { info, results, allCaractersLoading, caractersPaginationLoader } = state;
 
     //local state
     const [page, setPage] = useState(1);
@@ -38,23 +38,32 @@ const Caracters = () => {
 
     return (
         <div className={css.container}>
-            <div className={css.caractersHeader}>
-                Scroll down to load more caracters
-            </div>
-            <InfiniteScroll
-                className={css.infiniteScroll}
-                dataLength={results.length}
-                next={() => setPage(prev => prev + 1)}
-                hasMore={true}
-                loader={null}
-            >
-                {results.map((caracter, index) => (
-                    <CaracterItem
-                        key={index}
-                        caracter={caracter}
-                    />
-                ))}
-            </InfiniteScroll>
+            {allCaractersLoading ?
+                <div className={css.loading}>
+                    Loading...
+                </div>
+                :
+                <>
+                    <div className={css.caractersHeader}>
+                        <h2>Scroll down to load more caracters</h2>
+                        <span>Total: {info?.count}</span>
+                    </div>
+                    <InfiniteScroll
+                        className={css.infiniteScroll}
+                        dataLength={results.length}
+                        next={() => setPage(prev => prev + 1)}
+                        hasMore={true}
+                        loader={caractersPaginationLoader && <div className={css.loader}>Loading...</div>}
+                    >
+                        {results.map((caracter, index) => (
+                            <CaracterItem
+                                key={index}
+                                caracter={caracter}
+                            />
+                        ))}
+                    </InfiniteScroll>
+                </>
+            }
         </div>
     )
 }

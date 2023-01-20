@@ -22,7 +22,7 @@ const SingleCaracter = () => {
     const dispatch = useDispatch();
     const { getSingleCaracterAction } = bindActionCreators(caractersActions, dispatch);
     const state = useSelector((state: State) => state.caractersReducer);
-    const { singleCaracter, loading } = state;
+    const { singleCaracter, singleCaracterloading } = state;
 
     useEffect(() => {
         //Need to put Abortcontroller here 
@@ -33,7 +33,7 @@ const SingleCaracter = () => {
 
     return (
         <div className={css.container}>
-            {loading ?
+            {singleCaracterloading ?
                 <div className={css.loading}>Loading...</div>
                 :
                 singleCaracter &&

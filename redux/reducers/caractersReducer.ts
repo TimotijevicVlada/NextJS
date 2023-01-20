@@ -4,8 +4,10 @@ import { CaractersActionsProps, CaracterProps } from "@/types/redux/caractersRed
 const INITIAL_STATE = {
     info: null,
     results: [],
+    allCaractersLoading: false,
+    caractersPaginationLoader: false,
     singleCaracter: null,
-    loading: false  //singleCaracter loader
+    singleCaracterloading: false
 }
 
 export const caractersReducer = (state: CaracterProps = INITIAL_STATE, action: CaractersActionsProps) => {
@@ -16,12 +18,22 @@ export const caractersReducer = (state: CaracterProps = INITIAL_STATE, action: C
                 info: action.payload.info,
                 results: action.payload.results
             }
+        case ActionType.GET_CARACTERS_LOADING:
+            return {
+                ...state,
+                allCaractersLoading: action.payload
+            }
         case ActionType.GET_CARACTERS_PAGINATION:
             const newResults = state.results.concat(action.payload.results);
             return {
                 ...state,
                 info: action.payload.info,
                 results: newResults
+            }
+        case ActionType.GET_CARACTERS_PAGINATION_LOADING:
+            return {
+                ...state,
+                caractersPaginationLoader: action.payload
             }
         case ActionType.GET_SINGLE_CARACTER:
             return {
@@ -31,7 +43,7 @@ export const caractersReducer = (state: CaracterProps = INITIAL_STATE, action: C
         case ActionType.GET_SINGLE_CARACTER_LOADING:
             return {
                 ...state,
-                loading: action.payload
+                singleCaracterloading: action.payload
             }
         default:
             return state;

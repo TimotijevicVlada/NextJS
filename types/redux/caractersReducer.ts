@@ -6,8 +6,10 @@ export interface CaracterItemProps {
 export interface CaracterProps {
     info: Info | null;
     results: Caracter[];
+    allCaractersLoading: boolean;
+    caractersPaginationLoader: boolean;
     singleCaracter: Caracter | null;
-    loading: boolean;
+    singleCaracterloading: boolean;
 }
 
 interface GetCaractersActionProps {
@@ -19,6 +21,11 @@ interface GetCaractersErrorActionProps {
     type: ActionType.GET_CARACTERS_ERROR;
 }
 
+interface GetCaractersLoadingProps {
+    type: ActionType.GET_CARACTERS_LOADING;
+    payload: boolean;
+}
+
 interface GetCaractersPaginationActionProps {
     type: ActionType.GET_CARACTERS_PAGINATION;
     payload: CaracterProps;
@@ -26,6 +33,11 @@ interface GetCaractersPaginationActionProps {
 
 interface GetCaractersPaginationErrorActionProps {
     type: ActionType.GET_CARACTERS_PAGINATION_ERROR;
+}
+
+interface GetCaractersPaginationLoadingProps {
+    type: ActionType.GET_CARACTERS_PAGINATION_LOADING;
+    payload: boolean;
 }
 
 interface getSingleCaracterActionProps {
@@ -49,4 +61,6 @@ export type CaractersActionsProps =
     GetCaractersPaginationErrorActionProps |
     getSingleCaracterActionProps |
     getSingleCaracterErrorActionProps |
-    getSingleCaracterLoadingProps;
+    getSingleCaracterLoadingProps |
+    GetCaractersLoadingProps |
+    GetCaractersPaginationLoadingProps;
