@@ -11,7 +11,7 @@ import CreateTodoIcon from "assets/plus-icon.svg";
 //types
 import { TodoSidebarProps } from '@/types/components/todos';
 
-const TodoSidebar: React.FC<TodoSidebarProps> = ({ completed, setCompleted }) => {
+const TodoSidebar: React.FC<TodoSidebarProps> = ({ filter, filterData }) => {
 
     //local state
     const [createTodoModal, setCreateTodoModal] = useState<boolean>(false);
@@ -25,9 +25,14 @@ const TodoSidebar: React.FC<TodoSidebarProps> = ({ completed, setCompleted }) =>
                         <CreateTodoIcon />
                     </button>
                 </div>
-                <button onClick={() => setCompleted(!completed)}
-                    className={`${css.completedButton} ${completed ? css.active : ""}`}>
+                <h2 className={css.filterHeader}>Filter your todos</h2>
+                <button onClick={() => filterData("completed")}
+                    className={`${css.completedButton} ${filter === "completed" ? css.active : ""}`}>
                     Completed
+                </button>
+                <button onClick={() => filterData("edited")}
+                    className={`${css.editedButton} ${filter === "edited" ? css.active : ""}`}>
+                    Edited
                 </button>
             </div>
 

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import css from "./TodoList.module.scss";
 
 //components
@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 
 //types
 import { State } from '@/redux/store';
+import { TodoProps } from '@/types/redux/todosReducer';
 
 const TodoList = () => {
 
@@ -17,19 +18,36 @@ const TodoList = () => {
     const todosReducer = useSelector((state: State) => state.todosReducer);
     const { todos } = todosReducer;
 
-    const [completed, setCompleted] = useState(false);
+    const [filteredTodos, setFilteredTodos] = useState<TodoProps[]>([]);
+    const [filter, setFilter] = useState<string>("");
 
-    const completedTodos = useMemo(() => todos.filter(item => item.completed), [completed]);
+    useEffect(() => {
+        if (filter === "completed") {
+            setFilteredTodos(todos.filter(item => item.completed));
+        } else if (filter === "edited") {
+            setFilteredTodos(todos.filter(item => item.edited));
+        } else {
+            setFilteredTodos(todos);
+        }
+    }, [todos, filter])
+
+    const filterData = (newFilter: string) => {
+        if (newFilter === filter) {
+            setFilter("");
+        } else {
+            setFilter(newFilter);
+        }
+    }
 
     return (
         <div className={css.container}>
             <div className={css.todoContent}>
                 <TodoSidebar
-                    completed={completed}
-                    setCompleted={setCompleted}
+                    filter={filter}
+                    filterData={filterData}
                 />
                 <TodoContent
-                    todos={completed ? completedTodos : todos}
+                    todos={filteredTodos}
                 />
             </div>
         </div>

@@ -19,6 +19,6 @@ export interface TodoContentProps {
 }
 
 export interface TodoSidebarProps {
-    completed: boolean;
-    setCompleted: (completed: boolean) => void;
+    filter: string;
+    filterData: (filter: string) => void;
 }
