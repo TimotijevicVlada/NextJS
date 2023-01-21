@@ -18,8 +18,14 @@ const TodoList = () => {
     const todosReducer = useSelector((state: State) => state.todosReducer);
     const { todos } = todosReducer;
 
+    //local state
     const [filteredTodos, setFilteredTodos] = useState<TodoProps[]>([]);
     const [filter, setFilter] = useState<string>("");
+    const [search, setSearch] = useState<string>("");
+
+    useEffect(() => {
+        setFilteredTodos(todos);
+    }, [todos])
 
     useEffect(() => {
         if (filter === "completed") {
@@ -29,7 +35,12 @@ const TodoList = () => {
         } else {
             setFilteredTodos(todos);
         }
-    }, [todos, filter])
+    }, [filter])
+
+    useEffect(() => {
+        const searchedTodos = todos.filter(item => item.subject.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
+        setFilteredTodos(searchedTodos);
+    }, [search])
 
     const filterData = (newFilter: string) => {
         if (newFilter === filter) {
@@ -45,6 +56,7 @@ const TodoList = () => {
                 <TodoSidebar
                     filter={filter}
                     filterData={filterData}
+                    setSearch={setSearch}
                 />
                 <TodoContent
                     filter={filter}

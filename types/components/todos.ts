@@ -22,4 +22,5 @@ export interface TodoContentProps {
 export interface TodoSidebarProps {
     filter: string;
     filterData: (filter: string) => void;
+    setSearch: (search: string) => void;
 }
