@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import css from "./TodoList.module.scss";
 
 //components
@@ -47,6 +47,7 @@ const TodoList = () => {
                     filterData={filterData}
                 />
                 <TodoContent
+                    filter={filter}
                     todos={filteredTodos}
                 />
             </div>

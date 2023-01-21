@@ -15,6 +15,7 @@ export interface UpdateTodoModalProps {
 }
 
 export interface TodoContentProps {
+    filter: string;
     todos: TodoProps[];
 }
 

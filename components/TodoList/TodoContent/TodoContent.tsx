@@ -12,13 +12,25 @@ import EmptyIcon from "assets/empty-todo.svg";
 import { TodoContentProps } from '@/types/components/todos';
 
 
-const TodoContent: React.FC<TodoContentProps> = ({ todos }) => {
+const TodoContent: React.FC<TodoContentProps> = ({ todos, filter }) => {
+
+    const renderNoTodoText = () => {
+        switch (filter) {
+            case "completed":
+                return "No completed todos yet";
+            case "edited":
+                return "No edited todos yet";
+            default:
+                return "Create your first todo"
+        }
+    }
+
     return (
         <div className={css.container}>
             {!todos.length ?
                 <NoData
                     children={<EmptyIcon />}
-                    text="No Todos yet."
+                    text={renderNoTodoText()}
                 />
                 :
                 <div className={css.todosContainer}>
