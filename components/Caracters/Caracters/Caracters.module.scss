@@ -3,13 +3,22 @@
 .container {
     min-height: calc(100vh - 8.5rem);
 
-    .loading {
+    .loading,
+    .errorMessage {
         margin: 2rem auto;
         width: 50rem;
         height: 40rem;
         @include centerElement;
         font-size: 2rem;
         color: $color-white;
+    }
+
+    .errorMessage {
+        color: $color-gray;
+
+        .word {
+            color: $color-white;
+        }
     }
 
     .infiniteScroll {

@@ -8,8 +8,7 @@ import { CaractersHeaderProps } from '@/types/components/caracters';
 const CaractersHeader: React.FC<CaractersHeaderProps> = ({ info, setSearch }) => {
 
     const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        setSearch(`/?name=${e.target.value}`);
+        setSearch(e.target.value);
     }
 
     const debounceSearch = debounce(updateQuery, 500);

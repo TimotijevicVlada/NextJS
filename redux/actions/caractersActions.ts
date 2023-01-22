@@ -7,10 +7,10 @@ import { CaractersActionsProps } from "@/types/redux/caractersReducer";
 export const getCaractersAction = (filterName: string) => async (dispatch: Dispatch<CaractersActionsProps>) => {
     dispatch({ type: ActionType.GET_CARACTERS_LOADING, payload: true });
     try {
-        const response = await axios.get(`${Route.getCaracters}${filterName}`);
+        const response = await axios.get(`${Route.getCaracters}/?name=${filterName}`);
         dispatch({ type: ActionType.GET_CARACTERS, payload: response.data });
     } catch (error) {
-        dispatch({ type: ActionType.GET_CARACTERS_ERROR })
+        dispatch({ type: ActionType.GET_CARACTERS_ERROR, payload: true })
     } finally {
         dispatch({ type: ActionType.GET_CARACTERS_LOADING, payload: false });
     }
@@ -19,7 +19,7 @@ export const getCaractersAction = (filterName: string) => async (dispatch: Dispa
 export const getCaractersPaginationAction = (page: number, filterName: string) => async (dispatch: Dispatch<CaractersActionsProps>) => {
     dispatch({ type: ActionType.GET_CARACTERS_PAGINATION_LOADING, payload: true });
     try {
-        const response = await axios.get(`${Route.getCaracters}${filterName}`, { params: { page: page } });
+        const response = await axios.get(`${Route.getCaracters}/?name=${filterName}`, { params: { page: page } });
         dispatch({ type: ActionType.GET_CARACTERS_PAGINATION, payload: response.data });
     } catch (error) {
         dispatch({ type: ActionType.GET_CARACTERS_PAGINATION_ERROR });

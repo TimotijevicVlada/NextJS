@@ -7,6 +7,7 @@ export interface CaracterProps {
     info: Info | null;
     results: Caracter[];
     allCaractersLoading: boolean;
+    isError: boolean;
     caractersPaginationLoader: boolean;
     singleCaracter: Caracter | null;
     singleCaracterloading: boolean;
@@ -19,6 +20,7 @@ interface GetCaractersActionProps {
 
 interface GetCaractersErrorActionProps {
     type: ActionType.GET_CARACTERS_ERROR;
+    payload: boolean;
 }
 
 interface GetCaractersLoadingProps {
