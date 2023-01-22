@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import css from "./TodoItem.module.scss";
 
 //components
@@ -10,29 +10,34 @@ import ConfirmationAlert from '@/components/ConfirmationAlert/ConfirmationAlert'
 import TrashIcon from "assets/trash-icon.svg";
 import EditIcon from "assets/edit-icon.svg";
 import CheckIcon from "assets/check-icon.svg";
+import RestoreIcon from "assets/restore-icon.svg";
 
 //redux
-import { deleteTodoAction } from '@/redux/actions/todosActions';
-import { checkTodoAction } from '@/redux/actions/todosActions';
+import { archiveTodoAction, deleteTodoAction, checkTodoAction, restoreTodoAction } from '@/redux/actions/todosActions';
 import { useDispatch } from 'react-redux';
 
 //types
 import { TodoItemProps } from '@/types/components/todos';
 import { TodoProps } from '@/types/redux/todosReducer';
 
-const TodoItem: React.FC<TodoItemProps> = ({ index, todo }) => {
+const TodoItem: React.FC<TodoItemProps> = ({ index, todo, filter }) => {
 
+    //redux
     const dispatch = useDispatch();
 
+    //variables
+    const isArchived = useMemo(() => filter === "archived", [filter]);
+
+    //local state
+    const [itemToArchive, setItemToArchive] = useState<null | TodoProps>(null);
     const [itemToDelete, setItemToDelete] = useState<null | TodoProps>(null);
     const [itemToUpdate, setItemToUpdate] = useState<null | TodoProps>(null);
     const [itemToCheck, setItemToCheck] = useState<null | TodoProps>(null);
-    const [slicedContent, setSlicedContent] = useState(false);
+    const [itemToRestore, setItemToRestore] = useState<null | TodoProps>(null);
+    const [slicedContent, setSlicedContent] = useState<boolean>(false);
 
     useEffect(() => {
-        if (todo.content.length > 200) {
-            setSlicedContent(true);
-        }
+        if (todo.content.length > 200) setSlicedContent(true);
     }, [])
 
     return (
@@ -51,29 +56,43 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo }) => {
                         </span>}
                 </div>
                 <div className={css.actions}>
-                    <div onClick={() => setItemToCheck(todo)} className={`${css.checkIcon} ${todo.completed ? css.completed : ""}`}>
-                        <CheckIcon />
-                    </div>
-                    <div onClick={() => setItemToUpdate(todo)} className={css.editIcon} >
-                        <EditIcon />
-                    </div>
-                    <div onClick={() => setItemToDelete(todo)} className={css.trashIcon}>
+                    {!isArchived &&
+                        <div onClick={() => setItemToCheck(todo)} className={`${css.checkIcon} ${todo.completed ? css.completed : ""}`}>
+                            <CheckIcon />
+                        </div>
+                    }
+                    {!isArchived &&
+                        <div onClick={() => setItemToUpdate(todo)} className={css.editIcon} >
+                            <EditIcon />
+                        </div>
+                    }
+                    {isArchived &&
+                        <div onClick={() => setItemToRestore(todo)} className={css.restoreIcon}>
+                            <RestoreIcon />
+                        </div>
+                    }
+                    <div onClick={() => isArchived ? setItemToDelete(todo) : setItemToArchive(todo)} className={css.trashIcon}>
                         <TrashIcon />
                     </div>
                 </div>
             </div>
-            {!!itemToDelete &&
+            {(!!itemToArchive || !!itemToDelete) &&
                 <Backdrop
                     children={<ConfirmationAlert
-                        close={() => setItemToDelete(null)}
-                        text="You will delete"
-                        itemName={itemToDelete.subject}
+                        close={() => itemToArchive ? setItemToArchive(null) : setItemToDelete(null)}
+                        text={`You will ${itemToArchive ? "archive" : "permanently delete"}`}
+                        itemName={itemToArchive ? itemToArchive.subject : itemToDelete?.subject}
                         confirmAction={() => {
-                            dispatch(deleteTodoAction(itemToDelete._id));
-                            setItemToDelete(null);
+                            if (itemToArchive) {
+                                dispatch(archiveTodoAction(itemToArchive._id));
+                                setItemToArchive(null);
+                            } else if (itemToDelete) {
+                                dispatch(deleteTodoAction(itemToDelete._id));
+                                setItemToDelete(null);
+                            }
                         }}
                     />}
-                    close={() => setItemToDelete(null)}
+                    close={() => isArchived ? setItemToArchive(null) : setItemToDelete(null)}
                 />
             }
             {!!itemToUpdate &&
@@ -97,6 +116,20 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo }) => {
                         }}
                     />}
                     close={() => setItemToCheck(null)}
+                />
+            }
+            {!!itemToRestore &&
+                <Backdrop
+                    children={<ConfirmationAlert
+                        close={() => setItemToRestore(null)}
+                        text="You will restore"
+                        itemName={itemToRestore.subject}
+                        confirmAction={() => {
+                            dispatch(restoreTodoAction(itemToRestore._id));
+                            setItemToRestore(null);
+                        }}
+                    />}
+                    close={() => setItemToRestore(null)}
                 />
             }
         </div>

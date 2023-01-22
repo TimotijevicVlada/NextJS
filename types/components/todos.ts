@@ -3,6 +3,7 @@ import { TodoProps } from "../redux/todosReducer";
 export interface TodoItemProps {
     index: number;
     todo: TodoProps;
+    filter: string;
 }
 
 export interface CreateTodoModalProps {

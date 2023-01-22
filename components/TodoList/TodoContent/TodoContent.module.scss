@@ -1,5 +1,9 @@
 @import "styles/main.module.scss";
 
 .container {
-    
+    &.center {
+        @include centerElement;
+        background-color: $color-black;
+        border-radius: 1.2rem;
+    }
 }

@@ -15,8 +15,8 @@ import { TodoProps } from '@/types/redux/todosReducer';
 const TodoList = () => {
 
     //redux
-    const todosReducer = useSelector((state: State) => state.todosReducer);
-    const { todos } = todosReducer;
+    const state = useSelector((state: State) => state.todosReducer);
+    const { todos, archived } = state;
 
     //local state
     const [filteredTodos, setFilteredTodos] = useState<TodoProps[]>([]);
@@ -24,20 +24,29 @@ const TodoList = () => {
     const [search, setSearch] = useState<string>("");
 
     useEffect(() => {
+        if (filter === "archived") return;
         setFilteredTodos(todos);
     }, [todos])
+
+    useEffect(() => {
+        if (filter !== "archived") return;
+        setFilteredTodos(archived);
+    }, [archived])
 
     useEffect(() => {
         if (filter === "completed") {
             setFilteredTodos(todos.filter(item => item.completed));
         } else if (filter === "edited") {
             setFilteredTodos(todos.filter(item => item.edited));
+        } else if (filter === "archived") {
+            setFilteredTodos(archived);
         } else {
             setFilteredTodos(todos);
         }
     }, [filter])
 
     useEffect(() => {
+        if (filter === "archived") return;
         const searchedTodos = todos.filter(item => item.subject.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
         setFilteredTodos(searchedTodos);
     }, [search])

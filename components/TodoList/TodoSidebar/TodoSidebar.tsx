@@ -15,7 +15,7 @@ import { TodoSidebarProps } from '@/types/components/todos';
 
 const TodoSidebar: React.FC<TodoSidebarProps> = ({ filter, filterData, setSearch }) => {
 
-    const filterButtons = ["completed", "edited"];
+    const filterButtons = ["completed", "edited", "archived"];
 
     //local state
     const [createTodoModal, setCreateTodoModal] = useState<boolean>(false);

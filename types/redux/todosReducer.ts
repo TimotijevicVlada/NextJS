@@ -15,6 +15,7 @@ export interface TodosProps {
 
 export interface TodosReducerProps {
     todos: TodoProps[];
+    archived: TodoProps[];
 }
 
 
@@ -22,6 +23,11 @@ export interface TodosReducerProps {
 interface AddNewTodoActionProps {
     type: ActionType.ADD_NEW_TODO;
     payload: TodoProps;
+}
+
+interface ArchiveTodoActionProps {
+    type: ActionType.ARCHIVE_TODO;
+    payload: string;
 }
 
 interface DeleteTodoActionProps {
@@ -39,4 +45,15 @@ interface CheckTodoActionProps {
     payload: string;
 }
 
-export type TodosActionsProps = AddNewTodoActionProps | DeleteTodoActionProps | UpdateTodoActionProps | CheckTodoActionProps;
+interface RestoreTodoActionProps {
+    type: ActionType.RESTORE_TODO;
+    payload: string;
+}
+
+export type TodosActionsProps =
+    AddNewTodoActionProps |
+    ArchiveTodoActionProps |
+    DeleteTodoActionProps |
+    UpdateTodoActionProps |
+    CheckTodoActionProps |
+    RestoreTodoActionProps;

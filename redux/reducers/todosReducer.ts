@@ -2,7 +2,8 @@ import { ActionType } from "../actionTypes";
 import { TodosReducerProps, TodosActionsProps } from "@/types/redux/todosReducer";
 
 const initialState = {
-    todos: []
+    todos: [],
+    archived: []
 }
 
 export const todosReducer = (state: TodosReducerProps = initialState, action: TodosActionsProps) => {
@@ -12,12 +13,6 @@ export const todosReducer = (state: TodosReducerProps = initialState, action: To
             return {
                 ...state,
                 todos: newTodos
-            }
-        case ActionType.DELETE_TODO:
-            const deletedTodo = state.todos.filter(item => item._id !== action.payload);
-            return {
-                ...state,
-                todos: deletedTodo
             }
         case ActionType.UPDATE_TODO:
             const updatedTodos = state.todos.map(item => item._id === action.payload._id ? action.payload : item);
@@ -30,6 +25,30 @@ export const todosReducer = (state: TodosReducerProps = initialState, action: To
             return {
                 ...state,
                 todos: checkTodo
+            }
+        case ActionType.ARCHIVE_TODO:
+            const deletedTodo = state.todos.filter(item => item._id !== action.payload);
+            const findArchived = state.todos.find(item => item._id === action.payload);
+            const newArchived = findArchived ? [findArchived, ...state.archived] : state.archived;
+            return {
+                ...state,
+                todos: deletedTodo,
+                archived: newArchived
+            }
+        case ActionType.DELETE_TODO:
+            const deleted = state.archived.filter(item => item._id !== action.payload);
+            return {
+                ...state,
+                archived: deleted
+            }
+        case ActionType.RESTORE_TODO:
+            const newArchive = state.archived.filter(item => item._id !== action.payload);
+            const index = state.archived.findIndex(item => item._id === action.payload);
+            const newRestoredTodos = [state.archived[index], ...state.todos];
+            return {
+                ...state,
+                todos: newRestoredTodos,
+                archived: newArchive
             }
         default:
             return state;

@@ -1,6 +1,6 @@
 export interface ConfirmationAlertProps {
     close: () => void;
-    itemName: string;
+    itemName: string | undefined;
     text: string;
     confirmAction: () => void;
 }
