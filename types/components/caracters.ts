@@ -26,6 +26,11 @@ export interface Caracter {
     url: string;
 }
 
+export interface CaractersHeaderProps {
+    info: Info | null;
+    setSearch: (filter: string) => void;
+}
+
 export interface SingleCaracterItemProps {
     singleCaracter: Caracter;
 }

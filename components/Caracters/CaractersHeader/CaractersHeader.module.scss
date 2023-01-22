@@ -1,0 +1,40 @@
+@import "styles/main.module.scss";
+
+.caractersHeader {
+    background-color: $color-black;
+    width: 48rem;
+    margin: 2rem auto;
+    border-radius: 1.5rem;
+    padding: 1rem;
+
+    .headerInfo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: $color-gray;
+        }
+        span {
+            font-size: 1.5rem;
+            color: $color-gray;
+        }
+    }
+
+    .caractersFilters {
+        .search {
+            input {
+                background-color: $color-gray;
+                padding: 0.7rem;
+                width: 14rem;
+                border: none;
+                outline: none;
+                color: $color-white;
+                border-radius: 1rem;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}

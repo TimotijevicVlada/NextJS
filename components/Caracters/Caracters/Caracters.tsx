@@ -3,6 +3,7 @@ import css from "./Caracters.module.scss";
 
 //components
 import InfiniteScroll from "react-infinite-scroll-component";
+import CaractersHeader from '../CaractersHeader/CaractersHeader';
 import CaracterItem from '../CaracterItem/CaracterItem';
 
 //redux
@@ -23,17 +24,18 @@ const Caracters = () => {
 
     //local state
     const [page, setPage] = useState(1);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         //Here I need to add Abort Controler
         if (page > 1) return;
-        getCaractersAction();
-    }, []);
+        getCaractersAction(search);
+    }, [search]);
 
     useEffect(() => {
         //Here I need to add Abort Controler
         if (page === 1) return;
-        getCaractersPaginationAction(page);
+        getCaractersPaginationAction(page, search);
     }, [page]);
 
     return (
@@ -44,10 +46,10 @@ const Caracters = () => {
                 </div>
                 :
                 <>
-                    <div className={css.caractersHeader}>
-                        <h2>Scroll down to load more caracters</h2>
-                        <span>Total: {info?.count}</span>
-                    </div>
+                    <CaractersHeader
+                        info={info}
+                        setSearch={setSearch}
+                    />
                     <InfiniteScroll
                         className={css.infiniteScroll}
                         dataLength={results.length}
