@@ -46,8 +46,8 @@ const TodoList = () => {
     }, [filter])
 
     useEffect(() => {
-        if (filter === "archived") return;
-        const searchedTodos = todos.filter(item => item.subject.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
+        const todosForSearch = filter === "archived" ? archived : todos;
+        const searchedTodos = todosForSearch.filter(item => item.subject.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
         setFilteredTodos(searchedTodos);
     }, [search])
 
