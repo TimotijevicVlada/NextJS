@@ -18,6 +18,7 @@
 
         .word {
             color: $color-white;
+            margin: 0 0.8rem;
         }
     }
 
@@ -28,6 +29,7 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 1rem;
         position: relative;
+        padding-bottom: 2rem;
 
         .loader {
             color: $color-white;
@@ -36,6 +38,15 @@
             bottom: 0rem;
             left: 50%;
             transform: translateX(-50%);
+        }
+
+        .noCaracters {
+            position: absolute;
+            bottom: 0rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: $color-white;
+            font-size: 1.3rem;
         }
     }
 }

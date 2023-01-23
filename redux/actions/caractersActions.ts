@@ -22,7 +22,7 @@ export const getCaractersPaginationAction = (page: number, filterName: string) =
         const response = await axios.get(`${Route.getCaracters}/?name=${filterName}`, { params: { page: page } });
         dispatch({ type: ActionType.GET_CARACTERS_PAGINATION, payload: response.data });
     } catch (error) {
-        dispatch({ type: ActionType.GET_CARACTERS_PAGINATION_ERROR });
+        dispatch({ type: ActionType.GET_CARACTERS_PAGINATION_ERROR, payload: true });
     } finally {
         dispatch({ type: ActionType.GET_CARACTERS_PAGINATION_LOADING, payload: false });
     }

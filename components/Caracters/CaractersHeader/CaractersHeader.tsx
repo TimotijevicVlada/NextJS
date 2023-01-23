@@ -5,9 +5,10 @@ import { debounce } from "lodash";
 //types
 import { CaractersHeaderProps } from '@/types/components/caracters';
 
-const CaractersHeader: React.FC<CaractersHeaderProps> = ({ info, setSearch }) => {
+const CaractersHeader: React.FC<CaractersHeaderProps> = ({ info, setSearch, setPage }) => {
 
     const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPage(1);
         setSearch(e.target.value);
     }
 

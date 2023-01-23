@@ -7,6 +7,7 @@ const INITIAL_STATE = {
     allCaractersLoading: false,
     isError: false,
     caractersPaginationLoader: false,
+    isPaginationError: false,
     singleCaracter: null,
     singleCaracterloading: false
 }
@@ -35,12 +36,18 @@ export const caractersReducer = (state: CaracterProps = INITIAL_STATE, action: C
             return {
                 ...state,
                 info: action.payload.info,
-                results: newResults
+                results: newResults,
+                isPaginationError: false
             }
         case ActionType.GET_CARACTERS_PAGINATION_LOADING:
             return {
                 ...state,
                 caractersPaginationLoader: action.payload
+            }
+        case ActionType.GET_CARACTERS_PAGINATION_ERROR:
+            return {
+                ...state,
+                isPaginationError: action.payload
             }
         case ActionType.GET_SINGLE_CARACTER:
             return {

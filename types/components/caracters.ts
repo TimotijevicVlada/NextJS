@@ -29,6 +29,7 @@ export interface Caracter {
 export interface CaractersHeaderProps {
     info: Info | null;
     setSearch: (filter: string) => void;
+    setPage: (page: number) => void;
 }
 
 export interface SingleCaracterItemProps {

@@ -20,7 +20,7 @@ const Caracters = () => {
     const dispatch = useDispatch();
     const { getCaractersAction, getCaractersPaginationAction } = bindActionCreators(caractersActions, dispatch);
     const state = useSelector((state: State) => state.caractersReducer);
-    const { info, results, allCaractersLoading, caractersPaginationLoader, isError } = state;
+    const { info, results, allCaractersLoading, caractersPaginationLoader, isError, isPaginationError } = state;
 
     //local state
     const [page, setPage] = useState(1);
@@ -43,6 +43,7 @@ const Caracters = () => {
             <CaractersHeader
                 info={info}
                 setSearch={setSearch}
+                setPage={setPage}
             />
             {allCaractersLoading ?
                 <div className={css.loading}>
@@ -51,7 +52,7 @@ const Caracters = () => {
                 :
                 isError ?
                     <div className={css.errorMessage}>
-                        No results for<span className={css.word}>{search}</span> word
+                        No results for<span className={css.word}>{`"${search}"`}</span> word
                     </div>
                     :
                     <InfiniteScroll
@@ -67,6 +68,11 @@ const Caracters = () => {
                                 caracter={caracter}
                             />
                         ))}
+                        {isPaginationError &&
+                            <div className={css.noCaracters}>
+                                There is no more caracters
+                            </div>
+                        }
                     </InfiniteScroll>
             }
         </div>
