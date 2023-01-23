@@ -6,15 +6,16 @@ import { useDispatch } from 'react-redux';
 import { updateTodoAction } from '@/redux/actions/todosActions';
 
 //types
-import { UpdateTodoModalProps } from '@/types/components/todos';
+import { UpdateTodoModalProps, ErrorProps, InputProps } from '@/types/components/todos';
 
 const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({ itemToUpdate, close }) => {
 
     const dispatch = useDispatch();
 
     //local state
-    const [input, setInput] = useState({ subject: "", content: "" });
-    const [updated, setUpdated] = useState(false);
+    const [input, setInput] = useState<InputProps>({ subject: "", content: "" });
+    const [updated, setUpdated] = useState<boolean>(false);
+    const [error, setError] = useState<ErrorProps>({ subject: false, content: false });
 
     useEffect(() => {
         setInput({
@@ -23,13 +24,10 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({ itemToUpdate, close }
         })
     }, [])
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setInput({ ...input, [e.target.name]: e.target.value });
-    }
-
     const handleUpdate = (e: React.MouseEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!input.subject || !input.content) return;
+        const hasErrors = handleError();
+        if (hasErrors) return;
         const updatedTodo = {
             ...itemToUpdate,
             subject: input.subject,
@@ -45,6 +43,21 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({ itemToUpdate, close }
         return () => clearTimeout(timeout);
     }
 
+    const handleError = () => {
+        let tempError = {} as ErrorProps;
+        if (!input.subject.trim()) tempError = { ...tempError, subject: true };
+        if (!input.content.trim()) tempError = { ...tempError, content: true };
+        setError(tempError);
+        const checkErrors = Object.values(tempError);
+        return !!checkErrors.length;
+    }
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setInput({ ...input, [e.target.name]: e.target.value });
+        if (error.subject && input.subject.trim()) setError({ ...error, subject: false });
+        if (error.content && input.content.trim()) setError({ ...error, content: false });
+    }
+
     return (
         <form onSubmit={handleUpdate} className={css.container} onClick={(e) => e.stopPropagation()}>
             <h2>Update Todo</h2>
@@ -56,6 +69,7 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({ itemToUpdate, close }
                     value={input.subject}
                     onChange={handleChange}
                 />
+                {error.subject && <div className={css.error}>Subject is required</div>}
             </div>
             <div className={css.content}>
                 <label htmlFor="content">Your content</label>
@@ -64,6 +78,7 @@ const UpdateTodoModal: React.FC<UpdateTodoModalProps> = ({ itemToUpdate, close }
                     value={input.content}
                     onChange={handleChange}
                 />
+                {error.content && <div className={css.error}>Content is required</div>}
             </div>
             <div className={css.submitButton}>
                 <button disabled={!!updated} type='submit' className={updated ? css.updated : ""}>

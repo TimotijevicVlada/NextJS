@@ -25,3 +25,13 @@ export interface TodoSidebarProps {
     filterData: (filter: string) => void;
     setSearch: (search: string) => void;
 }
+
+export interface ErrorProps {
+    subject: boolean;
+    content: boolean;
+}
+
+export interface InputProps {
+    subject: string;
+    content: string;
+}

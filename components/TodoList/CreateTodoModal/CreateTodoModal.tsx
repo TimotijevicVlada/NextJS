@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { addNewTodoAction } from '@/redux/actions/todosActions';
 
 //types
-import { CreateTodoModalProps } from '@/types/components/todos';
+import { CreateTodoModalProps, ErrorProps, InputProps } from '@/types/components/todos';
 
 const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ close }) => {
 
@@ -17,12 +17,14 @@ const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ close }) => {
   const dispatch = useDispatch();
 
   //local state
-  const [input, setInput] = useState({ subject: "", content: "" });
-  const [created, setCreated] = useState(false);
+  const [input, setInput] = useState<InputProps>({ subject: "", content: "" });
+  const [created, setCreated] = useState<boolean>(false);
+  const [error, setError] = useState<ErrorProps>({ subject: false, content: false });
 
   const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!input.subject || !input.content) return;
+    const hasErrors = handleError();
+    if (hasErrors) return;
     const newTodo = {
       _id: uuid(),
       subject: input.subject,
@@ -39,8 +41,19 @@ const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ close }) => {
     return () => clearTimeout(timeout);
   }
 
+  const handleError = () => {
+    let tempError = {} as ErrorProps;
+    if (!input.subject.trim()) tempError = { ...tempError, subject: true };
+    if (!input.content.trim()) tempError = { ...tempError, content: true };
+    setError(tempError);
+    const checkErrors = Object.values(tempError);
+    return !!checkErrors.length;
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setInput({ ...input, [e.target.name]: e.target.value });
+    if (error.subject && input.subject.trim()) setError({ ...error, subject: false });
+    if (error.content && input.content.trim()) setError({ ...error, content: false });
   }
 
   return (
@@ -53,6 +66,7 @@ const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ close }) => {
           name="subject"
           onChange={handleChange}
         />
+        {error.subject && <div className={css.error}>Subject is required</div>}
       </div>
       <div className={css.content}>
         <label htmlFor="content">Your content</label>
@@ -60,6 +74,7 @@ const CreateTodoModal: React.FC<CreateTodoModalProps> = ({ close }) => {
           name="content"
           onChange={handleChange}
         />
+        {error.content && <div className={css.error}>Content is required</div>}
       </div>
       <div className={css.submitButton}>
         <button disabled={!!created} type='submit' className={created ? css.created : ""}>
