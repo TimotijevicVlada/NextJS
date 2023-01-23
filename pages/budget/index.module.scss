@@ -1,2 +1,8 @@
 @import "styles/main.module.scss";
 
+.container {
+    min-height: calc(100vh - 8.5rem);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}

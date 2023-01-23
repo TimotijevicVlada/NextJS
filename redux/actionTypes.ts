@@ -1,4 +1,7 @@
 export enum ActionType {
+    //BUDGET
+    ADD_NEW_INCOME = "ADD_NEW_INCOME",
+    ADD_NEW_EXPENSE = "ADD_NEW_EXPENSE",
 
     //TO DO
     ADD_NEW_TODO = "ADD_NEW_TODO",

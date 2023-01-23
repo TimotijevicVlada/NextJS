@@ -1,19 +1,26 @@
 import { BudgetActionProps } from "types/redux/budgetReducer";
 import { BudgetReducerProps } from "types/redux/budgetReducer";
-import { SOME_CASE } from "../actionTypes";
+import { ActionType } from "../actionTypes";
 
 const initialState = {
     totalAmount: 0,
     income: 0,
-    expenses: 0
+    expense: 0
 }
 
 export const budgetReducer = (state: BudgetReducerProps = initialState, action: BudgetActionProps) => {
     switch (action.type) {
-        case SOME_CASE:
+        case ActionType.ADD_NEW_INCOME:
             return {
                 ...state,
-                totalAmount: action.payload
+                totalAmount: state.totalAmount + action.payload,
+                income: state.income + action.payload
+            }
+        case ActionType.ADD_NEW_EXPENSE:
+            return {
+                ...state,
+                totalAmount: state.totalAmount - action.payload,
+                expense: state.expense + action.payload
             }
         default:
             return state;
