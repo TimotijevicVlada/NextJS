@@ -25,17 +25,19 @@ const Caracters = () => {
     //local state
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
+    const [status, setStatus] = useState("");
+    const [gender, setGender] = useState("");
 
     useEffect(() => {
         //Here I need to add Abort Controler
         if (page > 1) return;
-        getCaractersAction(search);
-    }, [search]);
+        getCaractersAction(search, status, gender);
+    }, [search, status, gender]);
 
     useEffect(() => {
         //Here I need to add Abort Controler
         if (page === 1) return;
-        getCaractersPaginationAction(page, search);
+        getCaractersPaginationAction(page, search, status, gender);
     }, [page]);
 
     return (
@@ -44,6 +46,10 @@ const Caracters = () => {
                 info={info}
                 setSearch={setSearch}
                 setPage={setPage}
+                status={status}
+                setStatus={setStatus}
+                gender={gender}
+                setGender={setGender}
             />
             {allCaractersLoading ?
                 <div className={css.loading}>

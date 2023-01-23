@@ -24,16 +24,72 @@
     }
 
     .caractersFilters {
+        display: flex;
+        justify-content: space-between;
         .search {
             input {
                 background-color: $color-gray;
                 padding: 0.7rem;
-                width: 14rem;
+                width: 13rem;
                 border: none;
                 outline: none;
                 color: $color-white;
                 border-radius: 1rem;
                 font-size: 1.2rem;
+            }
+        }
+
+        .status, .gender {
+            position: relative;
+            .activeButton {
+                width: 14rem;
+                font-size: 1.2rem;
+                padding: 0.7rem 1.2rem;
+                border-radius: 1rem;
+                color: $color-white;
+                border: none;
+                outline: none;
+                background-color: $color-primary;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                text-transform: capitalize;
+                
+
+                svg {
+                    width: 2rem;
+                    height: 1.5rem;
+                    path {
+                        stroke: $color-white;
+                    }
+                }
+            }
+
+            .dropButtons {
+                background-color: $color-gray;
+                z-index: 1;
+                position: absolute;
+                top: 3.3rem;
+                left: 0;
+                width: 100%;
+                border-radius: 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+
+                button {
+                    text-align: left;
+                    width: 100%;
+                    color: $color-white;
+                    font-size: 1.2rem;
+                    padding: 0.7rem 1.2rem;
+                    border: none;
+                    outline: none;
+
+                    &:hover {
+                        color: $color-primary;
+                    }
+                }
             }
         }
     }

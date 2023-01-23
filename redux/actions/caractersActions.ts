@@ -4,10 +4,10 @@ import { Dispatch } from "redux";
 import { ActionType } from "../actionTypes";
 import { CaractersActionsProps } from "@/types/redux/caractersReducer";
 
-export const getCaractersAction = (filterName: string) => async (dispatch: Dispatch<CaractersActionsProps>) => {
+export const getCaractersAction = (filterName: string, status: string, gender: string) => async (dispatch: Dispatch<CaractersActionsProps>) => {
     dispatch({ type: ActionType.GET_CARACTERS_LOADING, payload: true });
     try {
-        const response = await axios.get(`${Route.getCaracters}/?name=${filterName}`);
+        const response = await axios.get(`${Route.getCaracters}/?name=${filterName}&status=${status}&gender=${gender}`);
         dispatch({ type: ActionType.GET_CARACTERS, payload: response.data });
     } catch (error) {
         dispatch({ type: ActionType.GET_CARACTERS_ERROR, payload: true })
@@ -16,10 +16,10 @@ export const getCaractersAction = (filterName: string) => async (dispatch: Dispa
     }
 }
 
-export const getCaractersPaginationAction = (page: number, filterName: string) => async (dispatch: Dispatch<CaractersActionsProps>) => {
+export const getCaractersPaginationAction = (page: number, filterName: string, status: string, gender: string) => async (dispatch: Dispatch<CaractersActionsProps>) => {
     dispatch({ type: ActionType.GET_CARACTERS_PAGINATION_LOADING, payload: true });
     try {
-        const response = await axios.get(`${Route.getCaracters}/?name=${filterName}`, { params: { page: page } });
+        const response = await axios.get(`${Route.getCaracters}/?name=${filterName}&status=${status}&gender=${gender}`, { params: { page: page } });
         dispatch({ type: ActionType.GET_CARACTERS_PAGINATION, payload: response.data });
     } catch (error) {
         dispatch({ type: ActionType.GET_CARACTERS_PAGINATION_ERROR, payload: true });

@@ -30,6 +30,10 @@ export interface CaractersHeaderProps {
     info: Info | null;
     setSearch: (filter: string) => void;
     setPage: (page: number) => void;
+    status: string;
+    setStatus: (status: string) => void;
+    gender: string;
+    setGender: (gender: string) => void;
 }
 
 export interface SingleCaracterItemProps {
