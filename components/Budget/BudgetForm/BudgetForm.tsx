@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import css from "./BudgetForm.module.scss";
+import { v4 as uuid } from "uuid";
 
 //components
 import TransactionItem from '../TransactionItem/TransactionItem';
@@ -14,7 +15,7 @@ import { addNewIncomeAction, addNewExpenseAction } from '@/redux/actions/budgetA
 
 //types
 import { BudgetFormProps } from '@/types/components/budget';
-import { InputsProps, InputsErrorProps } from '@/types/redux/budgetReducer';
+import { InputsProps, InputsErrorProps, TransactionsInputProps } from '@/types/redux/budgetReducer';
 
 const BudgetForm: React.FC<BudgetFormProps> = ({ type, totalAmount, income, expense }) => {
 
@@ -26,8 +27,8 @@ const BudgetForm: React.FC<BudgetFormProps> = ({ type, totalAmount, income, expe
     const transactionHistory = isIncome ? income : expense;
 
     //local state
-    const [incomeInput, setIncomeInput] = useState<InputsProps>({ subject: "", amount: 0 });
-    const [expenseInput, setExpenseInput] = useState<InputsProps>({ subject: "", amount: 0 });
+    const [incomeInput, setIncomeInput] = useState<TransactionsInputProps>({ subject: "", amount: 0 });
+    const [expenseInput, setExpenseInput] = useState<TransactionsInputProps>({ subject: "", amount: 0 });
     const [incomeErrors, setIncomeErrors] = useState<InputsErrorProps>({ subject: "", amount: "" });
     const [expenseErrors, setExpenseErrors] = useState<InputsErrorProps>({ subject: "", amount: "" });
 
@@ -35,11 +36,17 @@ const BudgetForm: React.FC<BudgetFormProps> = ({ type, totalAmount, income, expe
         e.preventDefault();
         const hasErrors = handleErrors();
         if (hasErrors) return;
+        const newTransaction = {
+            _id: uuid(),
+            type: isIncome ? "income" : "expense",
+            subject: isIncome ? incomeInput.subject : expenseInput.subject,
+            amount: isIncome ? incomeInput.amount : expenseInput.amount
+        }
         if (isIncome) {
-            dispatch(addNewIncomeAction(incomeInput));
+            dispatch(addNewIncomeAction(newTransaction));
             setIncomeInput({ subject: "", amount: 0 });
         } else {
-            dispatch(addNewExpenseAction(expenseInput));
+            dispatch(addNewExpenseAction(newTransaction));
             setExpenseInput({ subject: "", amount: 0 });
         }
     }

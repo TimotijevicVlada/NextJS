@@ -22,6 +22,17 @@ export const budgetReducer = (state: BudgetReducerProps = initialState, action: 
                 totalAmount: state.totalAmount - action.payload.amount,
                 expense: [...state.expense, action.payload]
             }
+        case ActionType.DELETE_TRANSACTION:
+            const isIncome = action.payload.type === "income";
+            const transaction = isIncome ? state.income : state.expense;
+            const tempTransaction = transaction.filter(item => item._id !== action.payload._id);
+            const updateTotalAmount = isIncome ? state.totalAmount - action.payload.amount : state.totalAmount + action.payload.amount;
+            return {
+                ...state,
+                totalAmount: updateTotalAmount,
+                income: isIncome ? tempTransaction : state.income,
+                expense: !isIncome ? tempTransaction : state.expense
+            }
         default:
             return state;
     }

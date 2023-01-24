@@ -1,6 +1,13 @@
 import { ActionType } from "@/redux/actionTypes";
 
 export interface InputsProps {
+    _id: string;
+    type: string;
+    subject: string;
+    amount: number;
+}
+
+export interface TransactionsInputProps {
     subject: string;
     amount: number;
 }
@@ -26,4 +33,9 @@ interface AddNewExpenseActionProps {
     payload: InputsProps;
 }
 
-export type BudgetActionProps = AddNewIncomeActionProps | AddNewExpenseActionProps;
+interface DeleteTransactionItemProps {
+    type: ActionType.DELETE_TRANSACTION;
+    payload: InputsProps;
+}
+
+export type BudgetActionProps = AddNewIncomeActionProps | AddNewExpenseActionProps | DeleteTransactionItemProps;

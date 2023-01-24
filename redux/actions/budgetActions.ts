@@ -11,3 +11,8 @@ export const addNewExpenseAction = (expense: InputsProps) => ({
     type: ActionType.ADD_NEW_EXPENSE,
     payload: expense
 })
+
+export const deleteTransactionItem = (transaction: InputsProps) => ({
+    type: ActionType.DELETE_TRANSACTION,
+    payload: transaction
+})

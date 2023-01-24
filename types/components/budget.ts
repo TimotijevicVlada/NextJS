@@ -19,10 +19,13 @@ export interface BudgetBodyProps {
     expense: InputsProps[];
 }
 
+export interface TransactionItem {
+    _id: string;
+    type: string;
+    subject: string;
+    amount: number;
+}
 export interface TransactionItemProps {
-    item: {
-        subject: string;
-        amount: number;
-    },
+    item: TransactionItem;
     isIncome: boolean;
 }
