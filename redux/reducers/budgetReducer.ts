@@ -4,8 +4,8 @@ import { ActionType } from "../actionTypes";
 
 const initialState = {
     totalAmount: 0,
-    income: 0,
-    expense: 0
+    income: [],
+    expense: []
 }
 
 export const budgetReducer = (state: BudgetReducerProps = initialState, action: BudgetActionProps) => {
@@ -13,14 +13,14 @@ export const budgetReducer = (state: BudgetReducerProps = initialState, action: 
         case ActionType.ADD_NEW_INCOME:
             return {
                 ...state,
-                totalAmount: state.totalAmount + action.payload,
-                income: state.income + action.payload
+                totalAmount: state.totalAmount + action.payload.amount,
+                income: [...state.income, action.payload]
             }
         case ActionType.ADD_NEW_EXPENSE:
             return {
                 ...state,
-                totalAmount: state.totalAmount - action.payload,
-                expense: state.expense + action.payload
+                totalAmount: state.totalAmount - action.payload.amount,
+                expense: [...state.expense, action.payload]
             }
         default:
             return state;

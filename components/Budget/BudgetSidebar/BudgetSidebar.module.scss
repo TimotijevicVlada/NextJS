@@ -1,6 +1,5 @@
 @import "styles/main.module.scss";
 
-
 .container {
     background-color: $color-black;
     border-radius: 1.2rem;
@@ -33,7 +32,7 @@
         }
     }
 
-    .grafic {
+    .amountValues {
         display: grid;
         grid-template-columns: 1fr 1fr;
 
@@ -52,6 +51,38 @@
 
             span {
                 margin-bottom: 1rem;
+            }
+        }
+    }
+
+    .grafic {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .incomeGrafic,
+        .expenseGrafic {
+            margin: 0 auto;
+            border: 0.1rem solid $color-green;
+            border-radius: 0.7rem;
+            overflow: hidden;
+            width: 4rem;
+            height: 10rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            &.expenseGrafic {
+                border: 0.1rem solid $color-red;
+            }
+
+            .incomePercent {
+                background-color: $color-green;
+                transition: all 0.5s ease;
+            }
+
+            .expensePercent {
+                background-color: $color-red;
+                transition: all 0.5s ease;
             }
         }
     }

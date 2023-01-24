@@ -1,7 +1,11 @@
-
+import { InputsProps } from "../redux/budgetReducer";
 
 export interface BudgetSidebarProps {
     totalAmount: number;
-    income: number;
-    expense: number;
+    income: InputsProps[];
+    expense: InputsProps[];
+}
+
+export interface BudgetFormProps {
+    type: string;
 }

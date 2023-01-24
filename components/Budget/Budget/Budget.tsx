@@ -5,14 +5,15 @@ import css from "./Budget.module.scss";
 import BudgetSidebar from '../BudgetSidebar/BudgetSidebar';
 
 //redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 //types
 import { State } from 'redux/store';
+import BudgetBody from '../BudgetBody/BudgetBody';
 
 const Budget = () => {
 
-    const dispatch = useDispatch();
+    //redux
     const budget = useSelector((state: State) => state.budgetReducer);
     const { totalAmount, income, expense } = budget;
 
@@ -24,9 +25,7 @@ const Budget = () => {
                 income={income}
                 expense={expense}
             />
-            <div className={css.budgetBody}>
-                BUDGET BODY
-            </div>
+            <BudgetBody />
         </div>
     )
 }

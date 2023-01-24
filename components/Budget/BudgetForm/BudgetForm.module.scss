@@ -1,0 +1,36 @@
+@import "styles/main.module.scss";
+
+.container {
+    width: 100%;
+
+    input {
+        padding: 0.7rem;
+        width: 92%;
+        background-color: transparent;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        border: none;
+        outline: none;
+        border-bottom: 0.1rem solid $color-red;
+        color: $color-white;
+
+        &.incomeInput {
+            border-bottom: 0.1rem solid $color-green;
+        }
+    }
+
+    button {
+        float: right;
+        color: $color-white;
+        border: none;
+        outline: none;
+        background-color: $color-red;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        border-radius: 0.6rem;
+
+        &.incomeButton {
+            background-color: $color-green;
+        }
+    }
+}

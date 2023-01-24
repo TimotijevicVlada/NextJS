@@ -1,19 +1,24 @@
 import { ActionType } from "@/redux/actionTypes";
 
+export interface InputsProps {
+    subject: string;
+    amount: number;
+}
+
 export interface BudgetReducerProps {
     totalAmount: number;
-    income: number;
-    expense: number;
+    income: InputsProps[];
+    expense: InputsProps[];
 }
 
 interface AddNewIncomeActionProps {
     type: ActionType.ADD_NEW_INCOME;
-    payload: number;
+    payload: InputsProps;
 }
 
 interface AddNewExpenseActionProps {
     type: ActionType.ADD_NEW_EXPENSE;
-    payload: number;
+    payload: InputsProps;
 }
 
 export type BudgetActionProps = AddNewIncomeActionProps | AddNewExpenseActionProps;
