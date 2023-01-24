@@ -8,4 +8,9 @@ export interface BudgetSidebarProps {
 
 export interface BudgetFormProps {
     type: string;
+    totalAmount: number;
+}
+
+export interface BudgetBodyProps {
+    totalAmount: number;
 }

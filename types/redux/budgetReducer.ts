@@ -5,6 +5,11 @@ export interface InputsProps {
     amount: number;
 }
 
+export interface InputsErrorProps {
+    subject: string;
+    amount: string;
+}
+
 export interface BudgetReducerProps {
     totalAmount: number;
     income: InputsProps[];

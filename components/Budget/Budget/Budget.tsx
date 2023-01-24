@@ -25,7 +25,7 @@ const Budget = () => {
                 income={income}
                 expense={expense}
             />
-            <BudgetBody />
+            <BudgetBody totalAmount={totalAmount} />
         </div>
     )
 }
