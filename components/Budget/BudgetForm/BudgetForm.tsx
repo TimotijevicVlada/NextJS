@@ -1,6 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import css from "./BudgetForm.module.scss";
 
+//components
+import TransactionItem from '../TransactionItem/TransactionItem';
+import NoData from '@/components/NoData/NoData';
+
+//assets
+import EmptyIcon from "assets/empty-todo.svg";
+
 //redux
 import { useDispatch } from 'react-redux';
 import { addNewIncomeAction, addNewExpenseAction } from '@/redux/actions/budgetActions';
@@ -9,13 +16,14 @@ import { addNewIncomeAction, addNewExpenseAction } from '@/redux/actions/budgetA
 import { BudgetFormProps } from '@/types/components/budget';
 import { InputsProps, InputsErrorProps } from '@/types/redux/budgetReducer';
 
-const BudgetForm: React.FC<BudgetFormProps> = ({ type, totalAmount }) => {
+const BudgetForm: React.FC<BudgetFormProps> = ({ type, totalAmount, income, expense }) => {
 
     //redux
     const dispatch = useDispatch();
 
     //variables
     const isIncome = useMemo(() => type === "income", [type]);
+    const transactionHistory = isIncome ? income : expense;
 
     //local state
     const [incomeInput, setIncomeInput] = useState<InputsProps>({ subject: "", amount: 0 });
@@ -105,9 +113,32 @@ const BudgetForm: React.FC<BudgetFormProps> = ({ type, totalAmount }) => {
                     expenseErrors.amount && <div className={css.error}>{expenseErrors.amount}</div>
                 }
             </div>
-            <button className={isIncome ? css.incomeButton : ""} type="submit">
-                Add {isIncome ? "income" : "expense"}
-            </button>
+            <div className={css.submitButtonWrapper}>
+                <button className={isIncome ? css.incomeButton : ""} type="submit">
+                    Add {isIncome ? "income" : "expense"}
+                </button>
+            </div>
+
+            <h2 className={css.transactionHeader}>
+                {isIncome ? "Income" : "Expense"} transaction history
+            </h2>
+
+            <div className={!transactionHistory.length ? css.center : ""}>
+                {!transactionHistory.length ?
+                    <NoData
+                        type="budget"
+                        children={<EmptyIcon />}
+                        text={`No ${isIncome ? "incomes" : "expenses"} yet`}
+                    />
+                    :
+                    transactionHistory.map((item, index) => (
+                        <TransactionItem
+                            key={index}
+                            item={item}
+                            isIncome={isIncome}
+                        />
+                    ))}
+            </div>
         </form>
     )
 }

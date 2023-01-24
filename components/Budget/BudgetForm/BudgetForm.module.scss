@@ -29,18 +29,32 @@
         }
     }
 
-    button {
-        float: right;
-        color: $color-white;
-        border: none;
-        outline: none;
-        background-color: $color-red;
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-        border-radius: 0.6rem;
+    .submitButtonWrapper {
+        display: flex;
+        justify-content: flex-end;
 
-        &.incomeButton {
-            background-color: $color-green;
+        button {
+            color: $color-white;
+            border: none;
+            outline: none;
+            background-color: $color-red;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            border-radius: 0.6rem;
+
+            &.incomeButton {
+                background-color: $color-green;
+            }
         }
+    }
+
+    .transactionHeader {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+        color: $color-gray;
+    }
+
+    .center {
+        @include centerElement;
     }
 }

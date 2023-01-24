@@ -1,6 +1,6 @@
 @import "styles/main.module.scss";
 
- .container {
+.container {
     @include centerElement;
     flex-direction: column;
 
@@ -18,5 +18,16 @@
         margin-top: -0.5rem;
         color: $color-gray;
         font-size: 1.5rem;
+    }
+
+    &.budgetContainer {
+        margin-top: 3rem;
+        svg {
+            width: 8rem;
+            height: 6rem;
+        }
+        p {
+            font-size: 1rem;
+        }
     }
 }
