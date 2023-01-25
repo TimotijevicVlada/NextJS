@@ -7,25 +7,52 @@
     border-radius: 1.5rem;
     padding: 1rem;
 
+    @include respond(phone) {
+        background-color: unset;
+        width: unset;
+        margin: 1rem auto;
+        padding: 0.5rem;
+        border-radius: unset;
+    }
+
     .headerInfo {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 1rem;
+
+        @include respond(phone) {
+            flex-direction: column;
+        }
+
         h2 {
             margin: 0;
             font-size: 1.8rem;
             color: $color-gray;
+
+            @include respond(phone) {
+                font-size: 1.4rem;
+            }
         }
         span {
             font-size: 1.5rem;
             color: $color-gray;
+
+            @include respond(phone) {
+                font-size: 1.3rem;
+            }
         }
     }
 
     .caractersFilters {
         display: flex;
         justify-content: space-between;
+
+        @include respond(phone) {
+            flex-direction: column;
+            justify-content: unset;
+        }
+
         .search {
             input {
                 background-color: $color-gray;
@@ -36,10 +63,17 @@
                 color: $color-white;
                 border-radius: 1rem;
                 font-size: 1.2rem;
+
+                @include respond(phone) {
+                    width: 93%;
+                    margin-bottom: 1rem;
+                    padding: 0.8rem;
+                }
             }
         }
 
-        .status, .gender {
+        .status,
+        .gender {
             position: relative;
             .activeButton {
                 width: 14rem;
@@ -54,7 +88,11 @@
                 align-items: center;
                 justify-content: space-between;
                 text-transform: capitalize;
-                
+
+                @include respond(phone) {
+                    width: 100%;
+                    margin-bottom: 1rem;
+                }
 
                 svg {
                     width: 2rem;

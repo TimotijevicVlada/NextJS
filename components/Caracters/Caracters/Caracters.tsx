@@ -58,7 +58,8 @@ const Caracters = () => {
                 :
                 isError ?
                     <div className={css.errorMessage}>
-                        No results for<span className={css.word}>{`"${search}"`}</span> word
+                        <p>No results for</p>
+                        <span className={css.word}>{`"${search}"`}</span>
                     </div>
                     :
                     <InfiniteScroll
