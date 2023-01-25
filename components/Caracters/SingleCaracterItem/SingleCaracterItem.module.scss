@@ -4,6 +4,34 @@
     display: grid;
     grid-template-columns: 30rem 40rem;
     gap: 1rem;
+    position: relative;
+
+    .exit {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+
+        @include respond(phone) {
+            top: 0.5rem;
+            right: 0.5rem;
+        }
+
+        svg {
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+            path {
+                fill: $color-white;
+            }
+        }
+    }
+
+    @include respond(phone) {
+        display: flex;
+        flex-direction: column;
+        gap: unset;
+        width: 100%;
+    }
 
     .caracterImage {
         img {
@@ -11,6 +39,10 @@
             height: 100%;
             object-fit: cover;
             border-radius: 1.5rem;
+
+            @include respond(phone) {
+                border-radius: unset;
+            }
         }
     }
 
@@ -19,21 +51,11 @@
         color: $color-white;
         border-radius: 1.5rem;
         background-color: $color-black;
-        position: relative;
 
-        .exit {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-
-            svg {
-                width: 2rem;
-                height: 2rem;
-                cursor: pointer;
-                path {
-                    fill: $color-white;
-                }
-            }
+        @include respond(phone) {
+            border-radius: unset;
+            padding: 1rem;
+            background-color: unset;
         }
 
         h2 {
@@ -50,6 +72,10 @@
 
             span {
                 font-size: 1.5rem;
+
+                @include respond(phone) {
+                    font-size: 1.2rem;
+                }
                 &:first-child {
                     color: $color-gray;
                 }

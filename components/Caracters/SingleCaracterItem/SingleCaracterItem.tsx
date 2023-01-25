@@ -14,13 +14,13 @@ const SingleCaracterItem: React.FC<SingleCaracterItemProps> = ({ singleCaracter 
 
     return (
         <div className={css.container}>
+            <div className={css.exit} onClick={() => router.push("/caracters")}>
+                <ExitIcon />
+            </div>
             <div className={css.caracterImage}>
                 <img src={singleCaracter.image} alt={singleCaracter.name} />
             </div>
             <div className={css.caracterInfo}>
-                <div className={css.exit} onClick={() => router.push("/caracters")}>
-                    <ExitIcon />
-                </div>
                 <h2>{singleCaracter.name}</h2>
                 <div className={css.singleInfo}>
                     <span>Gender</span>
