@@ -74,7 +74,7 @@ const CaractersHeader: React.FC<CaractersHeaderProps> = ({ info, setSearch, setP
                             <button onClick={() => handleGender("female")}>Female</button>
                             <button onClick={() => handleGender("genderless")}>Genderless</button>
                             <button onClick={() => handleGender("unknown")}>Unknown</button>
-                            {status &&
+                            {gender &&
                                 <button onClick={() => handleGender("")}>Reset Gender</button>
                             }
                         </div>

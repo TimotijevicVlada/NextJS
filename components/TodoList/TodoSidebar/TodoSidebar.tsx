@@ -45,12 +45,14 @@ const TodoSidebar: React.FC<TodoSidebarProps> = ({ filter, filterData, setSearch
                     />
                 </div>
                 <h2 className={css.filterHeader}>Filter your todos</h2>
-                {filterButtons.map((item, index) => (
-                    <button key={index} onClick={() => filterData(item)}
-                        className={`${css.filterButtons} ${filter === item ? css.active : ""}`}>
-                        {item}
-                    </button>
-                ))}
+                <div className={css.filters}>
+                    {filterButtons.map((item, index) => (
+                        <button key={index} onClick={() => filterData(item)}
+                            className={`${css.filterButtons} ${filter === item ? css.active : ""}`}>
+                            {item}
+                        </button>
+                    ))}
+                </div>
             </div>
             {createTodoModal &&
                 <Backdrop

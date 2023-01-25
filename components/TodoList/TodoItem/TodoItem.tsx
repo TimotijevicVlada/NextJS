@@ -43,11 +43,12 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo, filter }) => {
     return (
         <div className={css.container}>
             <div className={css.todoSubject}>
-                <h3>{todo.subject} {todo.edited && <span>(edited)</span>}</h3>
+                <div>
+                    <h3>#{index + 1} {todo.subject} {todo.edited && <span>(edited)</span>}</h3>
+                </div>
                 <span>{todo.created_at}</span>
             </div>
             <div className={css.todoBody}>
-                <div className={css.index}>#{index + 1}</div>
                 <div className={css.content}>
                     {slicedContent ? todo.content.slice(0, 200) + "..." : todo.content}
                     {todo.content.length > 200 && slicedContent &&
@@ -57,12 +58,12 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo, filter }) => {
                 </div>
                 <div className={css.actions}>
                     {!isArchived &&
-                        <div onClick={() => setItemToCheck(todo)} className={`${css.checkIcon} ${todo.completed ? css.completed : ""}`}>
+                        <div onClick={() => setItemToCheck(todo)} className={`${css.checkIcon} ${todo.completed ? css.completed : ""}`} title="Complete">
                             <CheckIcon />
                         </div>
                     }
                     {!isArchived &&
-                        <div onClick={() => setItemToUpdate(todo)} className={css.editIcon} >
+                        <div onClick={() => setItemToUpdate(todo)} className={css.editIcon} title="Update">
                             <EditIcon />
                         </div>
                     }
@@ -71,7 +72,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo, filter }) => {
                             <RestoreIcon />
                         </div>
                     }
-                    <div onClick={() => isArchived ? setItemToDelete(todo) : setItemToArchive(todo)} className={css.trashIcon}>
+                    <div onClick={() => isArchived ? setItemToDelete(todo) : setItemToArchive(todo)} className={css.trashIcon} title="Archive">
                         <TrashIcon />
                     </div>
                 </div>
@@ -92,7 +93,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo, filter }) => {
                             }
                         }}
                     />}
-                    close={() => isArchived ? setItemToArchive(null) : setItemToDelete(null)}
+                    close={() => { setItemToArchive(null); setItemToDelete(null) }}
                 />
             }
             {!!itemToUpdate &&

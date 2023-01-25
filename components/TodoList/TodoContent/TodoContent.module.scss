@@ -5,5 +5,10 @@
         @include centerElement;
         background-color: $color-black;
         border-radius: 1.2rem;
+
+        @include respond(phone) {
+            border-radius: unset;
+             background-color: unset;
+        }
     }
 }

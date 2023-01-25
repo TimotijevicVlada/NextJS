@@ -9,6 +9,11 @@
         height: 12rem;
         margin-top: 0;
 
+        @include respond(phone) {
+            width: 10rem;
+            height: 8rem;
+        }
+
         path {
             stroke: $color-gray;
             fill: transparent;

@@ -6,6 +6,12 @@
     padding: 1rem 2rem;
     border-radius: 1.5rem;
 
+    @include respond(phone) {
+        padding: 1rem;
+        margin: 0 0.5rem 1rem 0.5rem;
+        border-radius: 1.2rem;
+    }
+
     &:last-child {
         margin-bottom: 0rem;
     }
@@ -17,6 +23,10 @@
         color: $color-white;
         margin-bottom: 0.5rem;
 
+        h3 {
+            margin: 0;
+        }
+
         span {
             color: $color-gray;
         }
@@ -24,8 +34,13 @@
 
     .todoBody {
         display: grid;
-        grid-template-columns: 5% 75% 20%;
+        grid-template-columns: 80% 20%;
         color: $color-gray;
+
+        @include respond(phone) {
+            display: flex;
+            flex-direction: column;
+        }
 
         .content {
             span {

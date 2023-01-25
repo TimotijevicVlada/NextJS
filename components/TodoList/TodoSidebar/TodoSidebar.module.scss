@@ -6,6 +6,12 @@
     color: $color-white;
     padding: 1rem;
 
+    @include respond(phone) {
+        border-radius: unset;
+        padding: 0.5rem;
+        background-color: unset
+    }
+
     .header {
         .sidebarHeader {
             display: flex;
@@ -63,23 +69,35 @@
             color: $color-gray;
         }
 
-        .filterButtons {
-            color: $color-white;
-            font-size: 1.3rem;
-            background-color: $color-gray;
-            width: 100%;
-            padding: 1rem;
-            border-radius: 1rem;
-            outline: none;
-            border: none;
-            margin-bottom: 1rem;
-
-            &::first-letter {
-                text-transform: capitalize;
+        .filters {
+            @include respond(phone) {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 0.5rem;
             }
+            .filterButtons {
+                color: $color-white;
+                font-size: 1.3rem;
+                background-color: $color-gray;
+                width: 100%;
+                padding: 1rem;
+                border-radius: 1rem;
+                outline: none;
+                border: none;
+                margin-bottom: 1rem;
 
-            &.active {
-                background-color: $color-primary;
+                @include respond(phone) {
+                    font-size: 1rem;
+                    padding: 0.8rem;
+                }
+
+                &::first-letter {
+                    text-transform: capitalize;
+                }
+
+                &.active {
+                    background-color: $color-primary;
+                }
             }
         }
     }
