@@ -14,18 +14,20 @@
     }
 
     .headerLogo {
-        @include centerElement;
+        position: relative;
 
         @include respond(phone) {
             display: none;
         }
 
-        h2 {
-            background-color: $color-primary;
-            color: $color-white;
-            padding: 0.5rem 2rem;
-            border-radius: 3rem;
-            margin: 0;
+        svg {
+            @include absoluteCenter;
+            width: 10rem;
+            height: 8rem;
+
+            path {
+                fill: $color-primary;
+            }
         }
     }
 
@@ -57,6 +59,24 @@
 
             &:nth-child(2) {
                 svg {
+                    width: 1.8rem;
+                    height: 1.8rem;
+
+                    path {
+                        fill: $color-gray;
+                    }
+                }
+
+                &.active,
+                &:hover {
+                    path {
+                        fill: $color-primary;
+                    }
+                }
+            }
+
+            &:nth-child(3) {
+                svg {
                     width: 2rem;
                     height: 2rem;
 
@@ -73,7 +93,7 @@
                 }
             }
 
-            &:nth-child(3) {
+            &:nth-child(4) {
                 svg {
                     width: 2.5rem;
                     height: 2.5rem;
@@ -91,7 +111,7 @@
                 }
             }
 
-            &:nth-child(4) {
+            &:nth-child(5) {
                 svg {
                     width: 2rem;
                     height: 2rem;
@@ -106,29 +126,6 @@
                     path {
                         stroke: $color-primary;
                     }
-                }
-            }
-        }
-    }
-
-    .headerUser {
-        @include centerElement;
-
-        @include respond(phone) {
-            display: none;
-        }
-
-        svg {
-            width: 2.5rem;
-            height: 2.5rem;
-            cursor: pointer;
-            path {
-                stroke: $color-gray;
-            }
-
-            &:hover {
-                path {
-                    stroke: $color-primary;
                 }
             }
         }

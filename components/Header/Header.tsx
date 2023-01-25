@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 //assets
 import HomeIcon from "assets/home-icon.svg";
 import TodoIcon from "assets/todo-icon.svg";
+import QuizIcon from "assets/quiz-icon.svg";
+import NextIcon from "assets/nextjs-icon.svg";
 import BudgetIcon from "assets/money-icon.svg";
-import UserIcon from "assets/user-icon.svg";
 import CaractersIcon from "assets/caracters-icon.svg";
 
 //types
@@ -17,6 +18,7 @@ const Header: React.FC<HeaderProps> = () => {
     const router = useRouter();
     const pages = [
         { name: "Home", path: "/", icon: <HomeIcon /> },
+        { name: "Quiz", path: "/quiz", icon: <QuizIcon /> },
         { name: "Todo list", path: "/todo-list", icon: < TodoIcon /> },
         { name: "Budget", path: "/budget", icon: <BudgetIcon /> },
         { name: "Caracters", path: "/caracters", icon: <CaractersIcon /> }
@@ -29,7 +31,7 @@ const Header: React.FC<HeaderProps> = () => {
     return (
         <div className={css.container}>
             <div className={css.headerLogo}>
-                <h2>Next.JS</h2>
+                <NextIcon />
             </div>
             <div className={css.mainHeaderIcons}>
                 {pages.map((item, index) => (
@@ -37,9 +39,6 @@ const Header: React.FC<HeaderProps> = () => {
                         {item.icon}
                     </span>
                 ))}
-            </div>
-            <div className={css.headerUser}>
-                <UserIcon />
             </div>
         </div>
     )

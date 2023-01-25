@@ -5,8 +5,8 @@
     flex-direction: column;
 
     svg {
-        width: 15rem;
-        height: 12rem;
+        width: 12rem;
+        height: 10rem;
         margin-top: 0;
 
         @include respond(phone) {

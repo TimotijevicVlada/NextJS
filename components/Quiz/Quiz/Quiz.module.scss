@@ -1,0 +1,136 @@
+@import "styles/main.module.scss";
+
+.container {
+    background-color: $color-black;
+    width: 48rem;
+    margin: 2rem auto;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    color: $color-white;
+
+    h1 {
+        margin: 0;
+        text-align: center;
+        color: $color-gray;
+    }
+
+    form {
+        padding: 1.5rem;
+        border-radius: 1.2rem;
+        width: 25rem;
+        margin: 2rem auto;
+        background-color: $color-modal-background;
+
+        h2 {
+            margin: 0;
+            margin: 0rem auto 2rem auto;
+            text-align: center;
+        }
+
+        .nameWrapper {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+
+            label {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            input {
+                background-color: $color-gray;
+                border: none;
+                outline: none;
+                font-size: 1.1rem;
+                color: $color-white;
+                padding: 0.8rem 1.5rem;
+                border-radius: 0.8rem;
+            }
+        }
+
+        .categoryWrapper,
+        .difficultyWrapper {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+            position: relative;
+
+            label {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            &.difficultyWrapper {
+                .activeButton {
+                    text-transform: capitalize;
+                }
+            }
+
+            .activeButton {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: $color-white;
+                background-color: $color-gray;
+                padding: 0.6rem 1.5rem;
+                font-size: 1.1rem;
+                border-radius: 0.8rem;
+
+                svg {
+                    width: 2rem;
+                    height: 2rem;
+
+                    path {
+                        stroke: $color-primary;
+                    }
+                }
+            }
+
+            .dropdown {
+                position: absolute;
+                top: 6rem;
+                width: 100%;
+                border-radius: 1rem;
+                display: flex;
+                flex-direction: column;
+                z-index: 2;
+                background-color: $color-gray;
+                max-height: 20rem;
+                overflow-y: scroll;
+                @include smallScrollbar;
+
+                button {
+                    text-align: left;
+                    padding: 0.8rem 1.5rem;
+                    font-size: 1.2rem;
+                    color: $color-white;
+
+                    &:hover {
+                        color: $color-primary;
+                    }
+                }
+
+                &.difficultyDrop {
+                    overflow: hidden;
+
+                    button {
+                        text-transform: capitalize;
+                    }
+                }
+            }
+        }
+
+        .startButton {
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+                color: $color-white;
+                background-color: $color-primary;
+                padding: 0.8rem 2rem;
+                font-size: 1.1rem;
+                border-radius: 0.8rem;
+            }
+        }
+    }
+}
