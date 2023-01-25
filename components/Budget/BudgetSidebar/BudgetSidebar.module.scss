@@ -6,11 +6,20 @@
     color: $color-white;
     padding: 1rem;
 
+    @include respond(phone) {
+        background-color: transparent;
+        border-radius: unset;
+    }
+
     h2 {
         margin: 0;
         margin-bottom: 3rem;
         text-align: center;
         color: $color-gray;
+
+        @include respond(phone) {
+            font-size: 1.8rem;
+        }
     }
 
     .balance {

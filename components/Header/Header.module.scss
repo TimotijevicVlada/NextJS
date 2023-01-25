@@ -9,8 +9,16 @@
     background-color: $color-black;
     height: 4.5rem;
 
+    @include respond(phone) {
+        grid-template-columns: 1fr;
+    }
+
     .headerLogo {
         @include centerElement;
+
+        @include respond(phone) {
+            display: none;
+        }
 
         h2 {
             background-color: $color-primary;
@@ -105,6 +113,10 @@
 
     .headerUser {
         @include centerElement;
+
+        @include respond(phone) {
+            display: none;
+        }
 
         svg {
             width: 2.5rem;

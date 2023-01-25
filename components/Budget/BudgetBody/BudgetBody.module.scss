@@ -8,4 +8,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+
+    @include respond(phone) {
+        display: flex;
+        flex-direction: column;
+        border-radius: unset;
+        background-color: unset;
+    }
 }
