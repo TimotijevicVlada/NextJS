@@ -78,8 +78,8 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo, filter }) => {
                 </div>
             </div>
             {(!!itemToArchive || !!itemToDelete) &&
-                <Backdrop
-                    children={<ConfirmationAlert
+                <Backdrop close={() => { setItemToArchive(null); setItemToDelete(null) }}>
+                    <ConfirmationAlert
                         close={() => itemToArchive ? setItemToArchive(null) : setItemToDelete(null)}
                         text={`You will ${itemToArchive ? "archive" : "permanently delete"}`}
                         itemName={itemToArchive ? itemToArchive.subject : itemToDelete?.subject}
@@ -92,22 +92,20 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo, filter }) => {
                                 setItemToDelete(null);
                             }
                         }}
-                    />}
-                    close={() => { setItemToArchive(null); setItemToDelete(null) }}
-                />
+                    />
+                </Backdrop >
             }
             {!!itemToUpdate &&
-                <Backdrop
-                    children={<UpdateTodoModal
+                <Backdrop close={() => setItemToUpdate(null)}>
+                    <UpdateTodoModal
                         itemToUpdate={itemToUpdate}
                         close={() => setItemToUpdate(null)}
-                    />}
-                    close={() => setItemToUpdate(null)}
-                />
+                    />
+                </Backdrop >
             }
             {!!itemToCheck &&
-                <Backdrop
-                    children={<ConfirmationAlert
+                <Backdrop close={() => setItemToCheck(null)}>
+                    <ConfirmationAlert
                         close={() => setItemToCheck(null)}
                         text={`You will ${itemToCheck.completed ? "uncheck" : "check"}`}
                         itemName={itemToCheck.subject}
@@ -115,13 +113,12 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo, filter }) => {
                             dispatch(checkTodoAction(itemToCheck._id));
                             setItemToCheck(null);
                         }}
-                    />}
-                    close={() => setItemToCheck(null)}
-                />
+                    />
+                </Backdrop >
             }
             {!!itemToRestore &&
-                <Backdrop
-                    children={<ConfirmationAlert
+                <Backdrop close={() => setItemToRestore(null)}>
+                    <ConfirmationAlert
                         close={() => setItemToRestore(null)}
                         text="You will restore"
                         itemName={itemToRestore.subject}
@@ -129,9 +126,8 @@ const TodoItem: React.FC<TodoItemProps> = ({ index, todo, filter }) => {
                             dispatch(restoreTodoAction(itemToRestore._id));
                             setItemToRestore(null);
                         }}
-                    />}
-                    close={() => setItemToRestore(null)}
-                />
+                    />
+                </Backdrop >
             }
         </div>
     )

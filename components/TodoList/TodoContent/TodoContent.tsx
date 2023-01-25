@@ -30,10 +30,9 @@ const TodoContent: React.FC<TodoContentProps> = ({ todos, filter }) => {
     return (
         <div className={`${css.container} ${!todos.length ? css.center : ""}`}>
             {!todos.length ?
-                <NoData
-                    children={<EmptyIcon />}
-                    text={renderNoTodoText()}
-                />
+                <NoData text={renderNoTodoText()}>
+                    <EmptyIcon />
+                </NoData>
                 :
                 <div className={css.todosContainer}>
                     {todos.map((item, index) => (

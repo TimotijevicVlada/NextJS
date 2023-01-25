@@ -33,8 +33,8 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ item, isIncome }) => 
             </div>
 
             {!!itemToDelete &&
-                <Backdrop
-                    children={<ConfirmationAlert
+                <Backdrop close={() => setItemToDelete(null)}>
+                    <ConfirmationAlert
                         close={() => setItemToDelete(null)}
                         itemName={`transaction of ${itemToDelete.subject}`}
                         text="You will delete"
@@ -42,9 +42,8 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ item, isIncome }) => 
                             dispatch(deleteTransactionItem(itemToDelete));
                             setItemToDelete(null);
                         }}
-                    />}
-                    close={() => setItemToDelete(null)}
-                />
+                    />
+                </ Backdrop>
             }
         </div>
     )

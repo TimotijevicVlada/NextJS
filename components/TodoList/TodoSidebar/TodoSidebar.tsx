@@ -55,14 +55,11 @@ const TodoSidebar: React.FC<TodoSidebarProps> = ({ filter, filterData, setSearch
                 </div>
             </div>
             {createTodoModal &&
-                <Backdrop
-                    children={
-                        <CreateTodoModal
-                            close={() => setCreateTodoModal(false)}
-                        />
-                    }
-                    close={() => setCreateTodoModal(false)}
-                />
+                <Backdrop close={() => setCreateTodoModal(false)}>
+                    <CreateTodoModal
+                        close={() => setCreateTodoModal(false)}
+                    />
+                </Backdrop>
             }
         </div>
     )

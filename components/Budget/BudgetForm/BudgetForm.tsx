@@ -134,9 +134,10 @@ const BudgetForm: React.FC<BudgetFormProps> = ({ type, totalAmount, income, expe
                 {!transactionHistory.length ?
                     <NoData
                         type="budget"
-                        children={<EmptyIcon />}
                         text={`No ${isIncome ? "incomes" : "expenses"} yet`}
-                    />
+                    >
+                        <EmptyIcon />
+                    </NoData>
                     :
                     transactionHistory.map((item, index) => (
                         <TransactionItem
