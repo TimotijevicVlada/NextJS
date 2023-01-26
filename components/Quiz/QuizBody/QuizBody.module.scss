@@ -1,0 +1,26 @@
+@import "styles/main.module.scss";
+
+.container {
+    background-color: $color-black;
+    padding: 1rem;
+    border-radius: 1.2rem;
+
+    h1, h2 {
+        margin: 0;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .nextButton {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            color: $color-white;
+            background-color: $color-green;
+            border-radius: 0.8rem;
+            font-size: 1.3rem;
+            padding: 0.5rem 2rem;
+        }
+    }
+}

@@ -1,1 +1,16 @@
 @import "styles/main.module.scss";
+
+.container {
+    color: $color-white;
+    width: 65rem;
+    min-height: 25rem;
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 1rem;
+
+    &.loading {
+        @include centerElement;
+        font-size: 2rem;
+    }
+}

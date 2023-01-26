@@ -1,0 +1,12 @@
+@import "styles/main.module.scss";
+
+.container {
+    background-color: $color-black;
+    padding: 1rem;
+    border-radius: 1.2rem;
+
+    h1 {
+        margin: 0;
+        color: $color-gray;
+    }
+}

@@ -6,12 +6,14 @@ import reduxThunk from 'redux-thunk';
 import { budgetReducer } from "./reducers/budgetReducer";
 import { todosReducer } from './reducers/todosReducer';
 import { caractersReducer } from './reducers/caractersReducer';
+import { quizReducer } from './reducers/quizReducer';
 
 
 export const reducers = combineReducers({
   budgetReducer: budgetReducer,
   todosReducer: todosReducer,
-  caractersReducer: caractersReducer
+  caractersReducer: caractersReducer,
+  quizReducer: quizReducer
 });
 
 export const store = createStore(reducers, composeWithDevTools(applyMiddleware(reduxThunk)));
