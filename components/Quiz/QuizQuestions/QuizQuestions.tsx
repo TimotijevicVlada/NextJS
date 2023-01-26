@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 
 //types
 import { State } from '@/redux/store';
+import { QuestionsProps } from '@/types/redux/quizReducer';
 
 const QuizQuestions = () => {
 
@@ -27,14 +28,17 @@ const QuizQuestions = () => {
 
   //variables
   const name = useMemo(() => router.query.name, [router.query.name]);
+  const category = useMemo(() => router.query.category, [router.query.category]);
+  const difficulty = useMemo(() => router.query.difficulty, [router.query.difficulty]);
 
   const [score, setScore] = useState(0);
+  const [currentQuestion, setQurrentQuestion] = useState<QuestionsProps | null>(null);
 
   useEffect(() => {
-    if (router.query.category) {
-      getQuizQuestions();
+    if (category && difficulty) {
+      getQuizQuestions(category, difficulty);
     }
-  }, [router.query.category])
+  }, [category])
 
   if (isLoading) {
     return (
@@ -47,10 +51,13 @@ const QuizQuestions = () => {
       <QuizSidebar
         name={name ? name : ""}
         score={score}
+        category={currentQuestion?.category}
       />
       <QuizBody
         questions={questions}
         setScore={setScore}
+        currentQuestion={currentQuestion}
+        setQurrentQuestion={setQurrentQuestion}
       />
     </div>
   )

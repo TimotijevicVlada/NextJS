@@ -15,11 +15,14 @@ export interface ErrorsProps {
 export interface QuizBodyProps {
     questions: QuestionsProps[];
     setScore: Dispatch<SetStateAction<number>>
+    currentQuestion: QuestionsProps | null;
+    setQurrentQuestion: Dispatch<SetStateAction<QuestionsProps | null>>
 }
 
 export interface QuizSidebarProps {
     name: string | string[];
     score: number;
+    category: string | undefined;
 }
 
 export interface SingleAnswerProps {

@@ -8,5 +8,23 @@
     h1 {
         margin: 0;
         color: $color-gray;
+        margin-bottom: 2rem;
+    }
+
+    .nameWrapper,
+    .scoreWrapper,
+    .categoryWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        h2 {
+            margin: 0;
+            color: $color-gray;
+        }
+
+        span {
+            font-size: 1.4rem;
+        }
     }
 }

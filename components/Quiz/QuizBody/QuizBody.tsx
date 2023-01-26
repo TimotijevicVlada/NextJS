@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react';
 import css from "./QuizBody.module.scss";
 
 //types 
-import { QuestionsProps } from '@/types/redux/quizReducer';
 import { QuizBodyProps } from '@/types/components/quiz';
 import SingleAnswer from '../SingleAnswer/SingleAnswer';
 
-const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore }) => {
+const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore, currentQuestion, setQurrentQuestion }) => {
 
     //local state
     const [questionNumber, setQuestionNumber] = useState(0);
-    const [currentQuestion, setQurrentQuestion] = useState<QuestionsProps | null>(null);
     const [choosenAnswer, setChoosenAnswer] = useState("");
 
     useEffect(() => {
@@ -54,8 +52,12 @@ const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore }) => {
                     />
                 ))}
             </div>
-            <div className={css.nextButton}>
-                <button onClick={handleNext}>Next</button>
+            <div className={`${css.nextButton} ${choosenAnswer ? css.active : ""}`}>
+                <button disabled={!!!choosenAnswer} onClick={handleNext}>Next</button>
+            </div>
+
+            <div className={css.percentBody}>
+                <div className={css.percentage} style={{ width: `${(questionNumber / questions.length) * 100}%` }}></div>
             </div>
         </div>
     )
