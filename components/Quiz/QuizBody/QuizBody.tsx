@@ -11,6 +11,7 @@ const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore }) => {
     //local state
     const [questionNumber, setQuestionNumber] = useState(0);
     const [currentQuestion, setQurrentQuestion] = useState<QuestionsProps | null>(null);
+    const [choosenAnswer, setChoosenAnswer] = useState("");
 
     useEffect(() => {
         if (!!questions.length) {
@@ -21,8 +22,18 @@ const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore }) => {
     const handleNext = () => {
         if (questionNumber < questions.length - 1) {
             setQuestionNumber(prev => prev + 1);
+            setChoosenAnswer("");
         } else {
             alert("NEMA VISE PITANJA")
+        }
+    }
+
+    const handleAnswer = (answer: string) => {
+        if (answer === currentQuestion?.correct_answer) {
+            setScore(prev => prev + 1);
+            setChoosenAnswer(answer);
+        } else {
+            setChoosenAnswer(answer);
         }
     }
 
@@ -35,7 +46,11 @@ const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore }) => {
                     <SingleAnswer
                         index={index}
                         item={item}
-                        currentQuestion={currentQuestion}
+                        handleAnswer={handleAnswer}
+                        disabled={!!choosenAnswer}
+                        correctAnswer={item === currentQuestion.correct_answer && choosenAnswer === item}
+                        wrongAnswer={item !== currentQuestion.correct_answer && choosenAnswer === item}
+                        showCorrectAnswer={!!choosenAnswer && choosenAnswer !== currentQuestion.correct_answer && item === currentQuestion.correct_answer}
                     />
                 ))}
             </div>

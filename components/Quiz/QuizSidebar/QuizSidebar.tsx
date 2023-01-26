@@ -8,6 +8,7 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({ name, score }) => {
     return (
         <div className={css.container}>
             <h1>Quiz</h1>
+            <h2>Score {score}</h2>
         </div>
     )
 }

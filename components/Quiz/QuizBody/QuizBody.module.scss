@@ -11,6 +11,11 @@
         margin-bottom: 2rem;
     }
 
+    .answers {
+        display: flex;
+        flex-direction: column;
+    }
+
     .nextButton {
         display: flex;
         justify-content: flex-end;

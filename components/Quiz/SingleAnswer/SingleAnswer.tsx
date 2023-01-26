@@ -4,18 +4,15 @@ import css from "./SingleAnswer.module.scss";
 //types 
 import { SingleAnswerProps } from '@/types/components/quiz';
 
-const SingleAnswer: React.FC<SingleAnswerProps> = ({ index, item, currentQuestion }) => {
-
-    const [correctAnswer, setCorrectAnswer] = useState(false);
-    const [wrongAnswer, setWrongAnswer] = useState(false);
-
-    const handleAnswer = () => {
-        if (item === currentQuestion.correct_answer) {
-            setCorrectAnswer(true);
-        } else {
-            setWrongAnswer(true);
-        }
-    }
+const SingleAnswer: React.FC<SingleAnswerProps> = ({
+    index,
+    item,
+    handleAnswer,
+    disabled,
+    correctAnswer,
+    wrongAnswer,
+    showCorrectAnswer
+}) => {
 
     const handleAnswers = (num: number) => {
         switch (num) {
@@ -33,10 +30,10 @@ const SingleAnswer: React.FC<SingleAnswerProps> = ({ index, item, currentQuestio
     }
 
     return (
-        <div className={`${css.container} ${correctAnswer ? css.green : ""} ${wrongAnswer ? css.red : ""}`}
-            onClick={handleAnswer}>
+        <button className={`${css.container} ${correctAnswer || showCorrectAnswer ? css.green : ""} ${wrongAnswer ? css.red : ""}`}
+            onClick={() => handleAnswer(item)} disabled={disabled}>
             {`${handleAnswers(index + 1)}. ${item}`}
-        </div>
+        </button>
     )
 }
 

@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { QuestionsProps } from "../redux/quizReducer";
 
 export interface SelectedCategoryProps {
@@ -13,7 +14,7 @@ export interface ErrorsProps {
 
 export interface QuizBodyProps {
     questions: QuestionsProps[];
-    setScore: (score: number) => void;
+    setScore: Dispatch<SetStateAction<number>>
 }
 
 export interface QuizSidebarProps {
@@ -24,5 +25,9 @@ export interface QuizSidebarProps {
 export interface SingleAnswerProps {
     index: number;
     item: string;
-    currentQuestion: QuestionsProps;
+    disabled: boolean;
+    correctAnswer: boolean;
+    wrongAnswer: boolean;
+    handleAnswer: (answer: string) => void;
+    showCorrectAnswer: boolean;
 }
