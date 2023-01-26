@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import css from "./Quiz.module.scss";
+import { useRouter } from 'next/router';
 
 //assets
 import ArrowDown from "assets/arrow-down.svg";
@@ -8,12 +9,12 @@ import ArrowUp from "assets/arrow-up.svg";
 //categories
 import { Categories, Difficulty } from '../Categories';
 
-interface SelectedCategoryProps {
-    category: string;
-    value: number;
-}
+//types 
+import { SelectedCategoryProps, ErrorsProps } from '@/types/components/quiz';
 
 const Quiz = () => {
+
+    const router = useRouter();
 
     //refs
     const currentCategoryRef = useRef() as React.RefObject<HTMLButtonElement>;
@@ -24,7 +25,8 @@ const Quiz = () => {
     const [categoryDropdown, setCategoryDropdown] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<SelectedCategoryProps | null>(null);
     const [difficultyDropdown, setDifficultyDropdown] = useState(false);
-    const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
+    const [selectedDifficulty, setSelectedDifficulty] = useState("");
+    const [errors, setErrors] = useState<ErrorsProps>({ name: false, category: false, difficulty: false });
 
     useEffect(() => {
         const handleCloseDropdown = (e: MouseEvent) => {
@@ -41,20 +43,49 @@ const Quiz = () => {
         return () => document.removeEventListener("click", handleCloseDropdown);
     }, []);
 
-    const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleSubmit = () => {
+        const hasErrors = checkErrors();
+        if (hasErrors) return;
         const quizData = {
             name: name,
             category: selectedCategory?.value,
             difficulty: selectedDifficulty
         }
-        console.log("DATA", quizData)
+        router.push({
+            pathname: "/quiz/questions",
+            query: quizData
+        })
+    }
+
+    const checkErrors = () => {
+        let tempErrors = {} as ErrorsProps;
+        if (!name.trim()) tempErrors = { ...tempErrors, name: true };
+        if (!selectedCategory) tempErrors = { ...tempErrors, category: true };
+        if (!selectedDifficulty) tempErrors = { ...tempErrors, difficulty: true };
+        setErrors(tempErrors);
+        const checkErrors = Object.values(tempErrors);
+        return !!checkErrors.length;
+    }
+
+    const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
+        if (errors.name && e.target.value) setErrors({ ...errors, name: false });
+    }
+
+    const handleCategory = (item: SelectedCategoryProps) => {
+        setSelectedCategory(item);
+        if (errors.category) setErrors({ ...errors, category: false });
+    }
+
+    const handleDifficulty = (item: string) => {
+        setSelectedDifficulty(item);
+        if (errors.difficulty) setErrors({ ...errors, difficulty: false });
     }
 
     return (
         <div className={css.container}>
             <h1>Welcome to my Quiz</h1>
-            <form onSubmit={handleSubmit}>
+            <div className={css.form}>
                 <h2>Quiz settings</h2>
                 <div className={css.nameWrapper}>
                     <label>Your name</label>
@@ -62,8 +93,9 @@ const Quiz = () => {
                         type="text"
                         placeholder='Type your name...'
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={handleName}
                     />
+                    {errors.name && <div className={css.errors}>Name is required</div>}
                 </div>
                 <div className={css.categoryWrapper} onClick={(e) => { setCategoryDropdown(prev => !prev); e.stopPropagation() }}>
                     <label>Select category</label>
@@ -74,10 +106,11 @@ const Quiz = () => {
                     {categoryDropdown &&
                         <div className={css.dropdown}>
                             {Categories.map((item, index) => (
-                                <button key={index} onClick={() => setSelectedCategory(item)}>{item.category}</button>
+                                <button key={index} onClick={() => handleCategory(item)}>{item.category}</button>
                             ))}
                         </div>
                     }
+                    {errors.category && <div className={css.errors}>Category is required</div>}
                 </div>
                 <div className={css.difficultyWrapper} onClick={(e) => { setDifficultyDropdown(prev => !prev); e.stopPropagation() }}>
                     <label>Select difficulty</label>
@@ -88,17 +121,18 @@ const Quiz = () => {
                     {difficultyDropdown &&
                         <div className={`${css.dropdown} ${css.difficultyDrop}`}>
                             {Difficulty.map((item, index) => (
-                                <button key={index} onClick={() => setSelectedDifficulty(item.difficulty)}>
-                                    {item.difficulty}
+                                <button key={index} onClick={() => handleDifficulty(item)}>
+                                    {item}
                                 </button>
                             ))}
                         </div>
                     }
+                    {errors.difficulty && <div className={css.errors}>Difficulty is required</div>}
                 </div>
                 <div className={css.startButton}>
-                    <button type='submit'>Start Quiz</button>
+                    <button onClick={handleSubmit}>Start Quiz</button>
                 </div>
-            </form>
+            </div>
         </div>
     )
 }

@@ -25,8 +25,4 @@ export const Categories = [
     { category: "Cartoon and Animations", value: 32 },
 ];
 
-export const Difficulty = [
-    { difficulty: "ease" },
-    { difficulty: "medium" },
-    { difficulty: "hard" },
-]
+export const Difficulty = ["easy", "medium", "hard"];

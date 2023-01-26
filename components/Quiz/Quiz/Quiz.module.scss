@@ -14,7 +14,7 @@
         color: $color-gray;
     }
 
-    form {
+    .form {
         padding: 1.5rem;
         border-radius: 1.2rem;
         width: 25rem;
@@ -31,6 +31,7 @@
             display: flex;
             flex-direction: column;
             margin-bottom: 2rem;
+            position: relative;
 
             label {
                 font-size: 1.2rem;
@@ -45,6 +46,13 @@
                 color: $color-white;
                 padding: 0.8rem 1.5rem;
                 border-radius: 0.8rem;
+            }
+
+            .errors {
+                position: absolute;
+                bottom: -1.2rem;
+                color: $color-red;
+                font-size: 0.8rem;
             }
         }
 
@@ -117,6 +125,13 @@
                         text-transform: capitalize;
                     }
                 }
+            }
+
+            .errors {
+                position: absolute;
+                bottom: -1.2rem;
+                color: $color-red;
+                font-size: 0.8rem;
             }
         }
 
