@@ -11,6 +11,8 @@ const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore, currentQuestio
     const [questionNumber, setQuestionNumber] = useState(0);
     const [choosenAnswer, setChoosenAnswer] = useState("");
 
+    const barPercentage = ((questionNumber / questions.length) * 100) + ((1 / questions.length) * 100);
+
     useEffect(() => {
         if (!!questions.length) {
             setQurrentQuestion(questions[questionNumber]);
@@ -57,7 +59,7 @@ const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore, currentQuestio
             </div>
 
             <div className={css.percentBody}>
-                <div className={css.percentage} style={{ width: `${(questionNumber / questions.length) * 100}%` }}></div>
+                <div className={css.percentage} style={{ width: `${barPercentage}%` }}></div>
             </div>
         </div>
     )
