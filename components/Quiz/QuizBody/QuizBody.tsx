@@ -44,6 +44,7 @@ const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore, currentQuestio
             <div className={css.answers}>
                 {currentQuestion?.answers.map((item, index) => (
                     <SingleAnswer
+                        key={index}
                         index={index}
                         item={item}
                         handleAnswer={handleAnswer}
