@@ -10,7 +10,7 @@ import ArrowUp from "assets/arrow-up.svg";
 import { Categories, Difficulty } from '../Categories';
 
 //types 
-import { SelectedCategoryProps, ErrorsProps } from '@/types/components/quiz';
+import { SelectedCategoryProps } from '@/types/components/quiz';
 
 const Quiz = () => {
 
@@ -22,11 +22,11 @@ const Quiz = () => {
 
     //local state
     const [name, setName] = useState("");
+    const [questionNumbers, setQuestionNumbers] = useState("");
     const [categoryDropdown, setCategoryDropdown] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<SelectedCategoryProps | null>(null);
     const [difficultyDropdown, setDifficultyDropdown] = useState(false);
     const [selectedDifficulty, setSelectedDifficulty] = useState("");
-    const [errors, setErrors] = useState<ErrorsProps>({ name: false, category: false, difficulty: false });
 
     useEffect(() => {
         const handleCloseDropdown = (e: MouseEvent) => {
@@ -44,12 +44,11 @@ const Quiz = () => {
     }, []);
 
     const handleSubmit = () => {
-        const hasErrors = checkErrors();
-        if (hasErrors) return;
         const quizData = {
-            name: name,
-            category: selectedCategory?.value,
-            difficulty: selectedDifficulty
+            name: name ? name : "Player 1",
+            questionNumbers: questionNumbers ? questionNumbers : "5",
+            category: selectedCategory?.value ? selectedCategory.value : "21",
+            difficulty: selectedDifficulty ? selectedDifficulty : "easy"
         }
         router.push({
             pathname: "/quiz/questions",
@@ -57,29 +56,22 @@ const Quiz = () => {
         })
     }
 
-    const checkErrors = () => {
-        let tempErrors = {} as ErrorsProps;
-        if (!name.trim()) tempErrors = { ...tempErrors, name: true };
-        if (!selectedCategory) tempErrors = { ...tempErrors, category: true };
-        if (!selectedDifficulty) tempErrors = { ...tempErrors, difficulty: true };
-        setErrors(tempErrors);
-        const checkErrors = Object.values(tempErrors);
-        return !!checkErrors.length;
-    }
-
     const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
-        if (errors.name && e.target.value) setErrors({ ...errors, name: false });
+    }
+
+    const handleQuestionNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const isNumber = /^[0-9]+$/.test(e.target.value);
+        if (!isNumber && e.target.value) return;
+        setQuestionNumbers(e.target.value);
     }
 
     const handleCategory = (item: SelectedCategoryProps) => {
         setSelectedCategory(item);
-        if (errors.category) setErrors({ ...errors, category: false });
     }
 
     const handleDifficulty = (item: string) => {
         setSelectedDifficulty(item);
-        if (errors.difficulty) setErrors({ ...errors, difficulty: false });
     }
 
     return (
@@ -95,7 +87,15 @@ const Quiz = () => {
                         value={name}
                         onChange={handleName}
                     />
-                    {errors.name && <div className={css.errors}>Name is required</div>}
+                </div>
+                <div className={css.questionNumberWrapper}>
+                    <label>Number of questions</label>
+                    <input
+                        type="text"
+                        placeholder='Type number...'
+                        value={questionNumbers}
+                        onChange={handleQuestionNumber}
+                    />
                 </div>
                 <div className={css.categoryWrapper} onClick={(e) => { setCategoryDropdown(prev => !prev); e.stopPropagation() }}>
                     <label>Select category</label>
@@ -110,7 +110,6 @@ const Quiz = () => {
                             ))}
                         </div>
                     }
-                    {errors.category && <div className={css.errors}>Category is required</div>}
                 </div>
                 <div className={css.difficultyWrapper} onClick={(e) => { setDifficultyDropdown(prev => !prev); e.stopPropagation() }}>
                     <label>Select difficulty</label>
@@ -127,7 +126,6 @@ const Quiz = () => {
                             ))}
                         </div>
                     }
-                    {errors.difficulty && <div className={css.errors}>Difficulty is required</div>}
                 </div>
                 <div className={css.startButton}>
                     <button onClick={handleSubmit}>Start Quiz</button>

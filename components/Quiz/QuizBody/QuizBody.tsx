@@ -40,7 +40,8 @@ const QuizBody: React.FC<QuizBodyProps> = ({
                 query: {
                     name: name,
                     score: score,
-                    category: category
+                    category: category,
+                    totalQuestions: questions.length
                 }
             });
         }

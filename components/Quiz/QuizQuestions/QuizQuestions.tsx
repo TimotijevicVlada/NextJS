@@ -28,6 +28,7 @@ const QuizQuestions = () => {
 
   //variables
   const name = useMemo(() => router.query.name, [router.query.name]);
+  const questionNumbers = useMemo(() => router.query.questionNumbers, [router.query.questionNumbers])
   const category = useMemo(() => router.query.category, [router.query.category]);
   const difficulty = useMemo(() => router.query.difficulty, [router.query.difficulty]);
 
@@ -35,8 +36,8 @@ const QuizQuestions = () => {
   const [currentQuestion, setQurrentQuestion] = useState<QuestionsProps | null>(null);
 
   useEffect(() => {
-    if (category && difficulty) {
-      getQuizQuestions(category, difficulty);
+    if (category && difficulty && questionNumbers) {
+      getQuizQuestions(category, difficulty, questionNumbers);
     }
   }, [category])
 

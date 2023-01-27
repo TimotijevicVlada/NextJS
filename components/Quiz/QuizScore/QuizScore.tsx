@@ -17,7 +17,7 @@ const QuizScore = () => {
             </div>
             <div className={css.score}>
                 <h2>Total score</h2>
-                <h2>{router.query.score}</h2>
+                <h2>{router.query.score}/{router.query.totalQuestions}</h2>
             </div>
             <div className={css.category}>
                 <h2>Category</h2>

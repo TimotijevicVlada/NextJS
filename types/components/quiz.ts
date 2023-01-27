@@ -6,12 +6,6 @@ export interface SelectedCategoryProps {
     value: number;
 }
 
-export interface ErrorsProps {
-    name: boolean;
-    category: boolean;
-    difficulty: boolean;
-}
-
 export interface QuizBodyProps {
     name: string | string[];
     score: number;
