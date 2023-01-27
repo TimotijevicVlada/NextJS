@@ -17,29 +17,15 @@
 
     .headerInfo {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: center;
         margin-bottom: 1rem;
 
-        @include respond(phone) {
-            flex-direction: column;
-        }
-
-        h2 {
+        h1 {
             margin: 0;
-            font-size: 1.8rem;
             color: $color-gray;
 
             @include respond(phone) {
-                font-size: 1.4rem;
-            }
-        }
-        span {
-            font-size: 1.5rem;
-            color: $color-gray;
-
-            @include respond(phone) {
-                font-size: 1.3rem;
+                margin-bottom: 1rem;
             }
         }
     }
@@ -129,6 +115,22 @@
                     }
                 }
             }
+        }
+    }
+
+    .underHeader {
+        margin-top: 1rem;
+        color: $color-gray;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            margin: 0;
+        }
+
+        span {
+            font-size: 1.5rem;
         }
     }
 }

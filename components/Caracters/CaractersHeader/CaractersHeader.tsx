@@ -51,8 +51,7 @@ const CaractersHeader: React.FC<CaractersHeaderProps> = ({ info, setSearch, setP
     return (
         <div className={css.caractersHeader}>
             <div className={css.headerInfo}>
-                <h2>Scroll down to load more caracters</h2>
-                <span>Total: {info?.count}</span>
+                <h1>Rick and Morty TV series</h1>
             </div>
             <div className={css.caractersFilters}>
                 <div className={css.search}>
@@ -97,6 +96,10 @@ const CaractersHeader: React.FC<CaractersHeaderProps> = ({ info, setSearch, setP
                         </div>
                     }
                 </div>
+            </div>
+            <div className={css.underHeader}>
+                <h2>Scroll down to load more caracters</h2>
+                <span>Total: {info?.count}</span>
             </div>
         </div>
     )

@@ -16,7 +16,7 @@ const QuizBody: React.FC<QuizBodyProps> = ({
     name,
     score,
     category,
-    choosenAnswer, 
+    choosenAnswer,
     setChoosenAnswer
 }) => {
 

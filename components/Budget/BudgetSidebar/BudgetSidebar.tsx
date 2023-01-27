@@ -19,7 +19,7 @@ const BudgetSidebar: React.FC<BudgetSidebarProps> = ({ totalAmount, income, expe
 
     return (
         <div className={css.container}>
-            <h2>Your Budget</h2>
+            <h1>Your Budget</h1>
             <div className={css.balance}>
                 <p>Your Balance</p>
                 <p>${totalAmount.toFixed(2)}</p>

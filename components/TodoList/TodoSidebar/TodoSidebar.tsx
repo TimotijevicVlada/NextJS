@@ -31,7 +31,7 @@ const TodoSidebar: React.FC<TodoSidebarProps> = ({ filter, filterData, setSearch
         <div className={css.container}>
             <div className={css.header}>
                 <div className={css.sidebarHeader}>
-                    <h2>Todo List</h2>
+                    <h1>Todo List</h1>
                     <button onClick={() => setCreateTodoModal(true)}>
                         <CreateTodoIcon />
                     </button>

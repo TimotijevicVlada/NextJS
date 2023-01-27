@@ -67,6 +67,10 @@
                     width: 1.8rem;
                     height: 1.8rem;
 
+                    circle {
+                        fill: $color-gray;
+                    }
+
                     path {
                         fill: $color-gray;
                     }
@@ -74,6 +78,9 @@
 
                 &.active,
                 &:hover {
+                    circle {
+                        fill: $color-primary;
+                    }
                     path {
                         fill: $color-primary;
                     }
