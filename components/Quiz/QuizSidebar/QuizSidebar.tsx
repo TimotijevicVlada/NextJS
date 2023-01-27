@@ -30,18 +30,20 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({
 
     return (
         <div className={css.container}>
-            <h1>Quiz</h1>
-            <div className={css.nameWrapper}>
-                <h2>Player:</h2>
-                <span>{name}</span>
-            </div>
-            <div className={css.scoreWrapper}>
-                <h2>Score:</h2>
-                <span>{score}</span>
-            </div>
-            <div className={css.categoryWrapper}>
-                <h2>Category:</h2>
-                <span>{category}</span>
+            <div className={css.sidebarInfo}>
+                <h1>Quiz</h1>
+                <div className={css.nameWrapper}>
+                    <h2>Player:</h2>
+                    <span>{name}</span>
+                </div>
+                <div className={css.scoreWrapper}>
+                    <h2>Score:</h2>
+                    <span>{score}</span>
+                </div>
+                <div className={css.categoryWrapper}>
+                    <h2>Category:</h2>
+                    <span>{category}</span>
+                </div>
             </div>
             <div className={css.timerWrapper}>
                 <div className={`${css.timer} ${criticalTime ? css.red : ""}`}>

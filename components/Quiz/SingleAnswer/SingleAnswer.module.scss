@@ -10,6 +10,10 @@
     text-align: left;
     color: $color-white;
 
+    @include respond(phone) {
+        margin-bottom: 1rem;
+    }
+
     &.green {
         background-color: $color-green;
     }

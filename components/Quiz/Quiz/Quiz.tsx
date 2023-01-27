@@ -45,7 +45,7 @@ const Quiz = () => {
 
     const handleSubmit = () => {
         const quizData = {
-            name: name ? name : "Player 1",
+            name: name ? name : "Unknown",
             questionNumbers: questionNumbers ? questionNumbers : "5",
             category: selectedCategory?.value ? selectedCategory.value : "21",
             difficulty: selectedDifficulty ? selectedDifficulty : "easy"

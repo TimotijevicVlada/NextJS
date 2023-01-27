@@ -8,6 +8,14 @@
     padding: 1rem;
     color: $color-white;
 
+    @include respond(phone) {
+        width: 100%;
+        padding: 1rem 0rem;
+        margin: unset;
+        border-radius: unset;
+        background-color: unset;
+    }
+
     h1 {
         margin: 0;
         text-align: center;
@@ -20,6 +28,12 @@
         width: 25rem;
         margin: 2rem auto;
         background-color: $color-modal-background;
+
+        @include respond(phone) {
+            width: unset;
+            border-radius: unset;
+            margin: 2rem auto 0rem auto;
+        }
 
         h2 {
             margin: 0;

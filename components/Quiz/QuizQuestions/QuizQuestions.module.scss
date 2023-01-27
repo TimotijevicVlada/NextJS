@@ -13,4 +13,11 @@
         @include centerElement;
         font-size: 2rem;
     }
+
+    @include respond(phone) {
+        width: unset;
+        display: flex;
+        flex-direction: column;
+        margin-top: unset;
+    }
 }

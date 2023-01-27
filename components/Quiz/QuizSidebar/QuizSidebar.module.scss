@@ -5,32 +5,60 @@
     padding: 1rem;
     border-radius: 1.2rem;
 
-    h1 {
-        margin: 0;
-        color: $color-gray;
-        margin-bottom: 2rem;
-    }
-
-    .nameWrapper,
-    .scoreWrapper,
-    .categoryWrapper {
+    @include respond(phone) {
+        background-color: unset;
+        border-radius: unset;
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-        h2 {
+        position: relative;
+        padding: unset;
+    }
+
+    .sidebarInfo {
+        @include respond(phone) {
+            display: none;
+        }
+        h1 {
             margin: 0;
             color: $color-gray;
+            margin-bottom: 2rem;
         }
 
-        span {
-            font-size: 1.4rem;
+        .nameWrapper,
+        .scoreWrapper,
+        .categoryWrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+
+            @include respond(phone) {
+                flex-direction: column;
+                justify-content: unset;
+                align-items: unset;
+                margin-bottom: 1rem;
+            }
+
+            h2 {
+                margin: 0;
+                color: $color-gray;
+            }
+
+            span {
+                font-size: 1.4rem;
+            }
         }
     }
 
     .timerWrapper {
         display: flex;
         justify-content: center;
+
+        @include respond(phone) {
+           position: absolute;
+           top: 1rem;
+           left: 1rem;
+        }
 
         .timer {
             border: 0.5rem solid $color-primary;
@@ -43,6 +71,17 @@
             &.red {
                 border: 0.5rem solid $color-red;
                 color: $color-red;
+            }
+
+            @include respond(phone) {
+                border: 0.2rem solid $color-primary;
+                width: 4rem;
+                height: 4rem;
+                font-size: 2rem;
+
+                &.red {
+                    border: 0.2rem solid $color-red;
+                }
             }
         }
     }
