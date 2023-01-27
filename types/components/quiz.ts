@@ -13,6 +13,9 @@ export interface ErrorsProps {
 }
 
 export interface QuizBodyProps {
+    name: string | string[];
+    score: number;
+    category: string | undefined;
     questions: QuestionsProps[];
     setScore: Dispatch<SetStateAction<number>>
     currentQuestion: QuestionsProps | null;

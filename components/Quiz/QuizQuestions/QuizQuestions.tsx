@@ -54,6 +54,9 @@ const QuizQuestions = () => {
         category={currentQuestion?.category}
       />
       <QuizBody
+        name={name ? name : ""}
+        score={score}
+        category={currentQuestion?.category}
         questions={questions}
         setScore={setScore}
         currentQuestion={currentQuestion}

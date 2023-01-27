@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import css from "./QuizBody.module.scss";
+import { useRouter } from 'next/router';
 
 //types 
 import { QuizBodyProps } from '@/types/components/quiz';
 import SingleAnswer from '../SingleAnswer/SingleAnswer';
 
-const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore, currentQuestion, setQurrentQuestion }) => {
+const QuizBody: React.FC<QuizBodyProps> = ({
+    questions,
+    setScore,
+    currentQuestion,
+    setQurrentQuestion,
+    name,
+    score,
+    category
+}) => {
+
+    const router = useRouter();
 
     //local state
     const [questionNumber, setQuestionNumber] = useState(0);
@@ -24,7 +35,14 @@ const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore, currentQuestio
             setQuestionNumber(prev => prev + 1);
             setChoosenAnswer("");
         } else {
-            alert("NEMA VISE PITANJA")
+            router.push({
+                pathname: "/quiz/questions/score",
+                query: {
+                    name: name,
+                    score: score,
+                    category: category
+                }
+            });
         }
     }
 
@@ -56,9 +74,10 @@ const QuizBody: React.FC<QuizBodyProps> = ({ questions, setScore, currentQuestio
                 ))}
             </div>
             <div className={`${css.nextButton} ${choosenAnswer ? css.active : ""}`}>
-                <button disabled={!!!choosenAnswer} onClick={handleNext}>Next</button>
+                <button disabled={!!!choosenAnswer} onClick={handleNext}>
+                    {questionNumber < questions.length - 1 ? "Next" : "Finish"}
+                </button>
             </div>
-
             <div className={css.percentBody}>
                 <div className={css.percentage} style={{ width: `${barPercentage}%` }}></div>
             </div>
