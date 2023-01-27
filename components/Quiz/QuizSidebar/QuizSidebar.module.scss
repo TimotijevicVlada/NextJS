@@ -27,4 +27,23 @@
             font-size: 1.4rem;
         }
     }
+
+    .timerWrapper {
+        display: flex;
+        justify-content: center;
+
+        .timer {
+            border: 0.5rem solid $color-primary;
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            @include centerElement;
+            font-size: 4rem;
+
+            &.red {
+                border: 0.5rem solid $color-red;
+                color: $color-red;
+            }
+        }
+    }
 }

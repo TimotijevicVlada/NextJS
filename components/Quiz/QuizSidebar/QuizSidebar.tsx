@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import css from "./QuizSidebar.module.scss";
 
 //types
 import { QuizSidebarProps } from '@/types/components/quiz';
 
-const QuizSidebar: React.FC<QuizSidebarProps> = ({ name, score, category }) => {
+const QuizSidebar: React.FC<QuizSidebarProps> = ({
+    timer,
+    setTimer,
+    name,
+    score,
+    category,
+    choosenAnswer
+}) => {
+
+    const [criticalTime, setCriticalTime] = useState(false);
+
+    useEffect(() => {
+        if (timer <= 5) {
+            setCriticalTime(true);
+        } else {
+            setCriticalTime(false);
+        }
+        if (timer === 0 || choosenAnswer) return;
+        const time = setInterval(() => {
+            setTimer(prev => prev - 1);
+        }, 1000)
+        return () => clearInterval(time);
+    }, [timer, choosenAnswer])
+
     return (
         <div className={css.container}>
             <h1>Quiz</h1>
@@ -19,6 +42,11 @@ const QuizSidebar: React.FC<QuizSidebarProps> = ({ name, score, category }) => {
             <div className={css.categoryWrapper}>
                 <h2>Category:</h2>
                 <span>{category}</span>
+            </div>
+            <div className={css.timerWrapper}>
+                <div className={`${css.timer} ${criticalTime ? css.red : ""}`}>
+                    {timer}
+                </div>
             </div>
         </div>
     )

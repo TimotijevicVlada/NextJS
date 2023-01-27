@@ -7,16 +7,23 @@ export interface SelectedCategoryProps {
 }
 
 export interface QuizBodyProps {
+    timer: number;
+    setTimer: Dispatch<SetStateAction<number>>;
     name: string | string[];
     score: number;
     category: string | undefined;
     questions: QuestionsProps[];
     setScore: Dispatch<SetStateAction<number>>
     currentQuestion: QuestionsProps | null;
-    setQurrentQuestion: Dispatch<SetStateAction<QuestionsProps | null>>
+    setQurrentQuestion: Dispatch<SetStateAction<QuestionsProps | null>>;
+    choosenAnswer: string;
+    setChoosenAnswer: Dispatch<SetStateAction<string>>;
 }
 
 export interface QuizSidebarProps {
+    timer: number;
+    setTimer: Dispatch<SetStateAction<number>>;
+    choosenAnswer: string;
     name: string | string[];
     score: number;
     category: string | undefined;

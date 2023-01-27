@@ -33,6 +33,8 @@ const QuizQuestions = () => {
   const difficulty = useMemo(() => router.query.difficulty, [router.query.difficulty]);
 
   const [score, setScore] = useState(0);
+  const [timer, setTimer] = useState(20);
+  const [choosenAnswer, setChoosenAnswer] = useState("");
   const [currentQuestion, setQurrentQuestion] = useState<QuestionsProps | null>(null);
 
   useEffect(() => {
@@ -53,8 +55,13 @@ const QuizQuestions = () => {
         name={name ? name : ""}
         score={score}
         category={currentQuestion?.category}
+        choosenAnswer={choosenAnswer}
+        timer={timer}
+        setTimer={setTimer}
       />
       <QuizBody
+        timer={timer}
+        setTimer={setTimer}
         name={name ? name : ""}
         score={score}
         category={currentQuestion?.category}
@@ -62,6 +69,8 @@ const QuizQuestions = () => {
         setScore={setScore}
         currentQuestion={currentQuestion}
         setQurrentQuestion={setQurrentQuestion}
+        choosenAnswer={choosenAnswer}
+        setChoosenAnswer={setChoosenAnswer}
       />
     </div>
   )

@@ -35,6 +35,11 @@
         @include centerElement;
         gap: 3rem;
 
+        @include respond(phone) {
+            justify-content: space-around;
+            gap: unset;
+        }
+
         span {
             cursor: pointer;
 

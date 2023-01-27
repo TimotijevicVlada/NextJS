@@ -7,20 +7,23 @@ import { QuizBodyProps } from '@/types/components/quiz';
 import SingleAnswer from '../SingleAnswer/SingleAnswer';
 
 const QuizBody: React.FC<QuizBodyProps> = ({
+    timer,
+    setTimer,
     questions,
     setScore,
     currentQuestion,
     setQurrentQuestion,
     name,
     score,
-    category
+    category,
+    choosenAnswer, 
+    setChoosenAnswer
 }) => {
 
     const router = useRouter();
 
     //local state
     const [questionNumber, setQuestionNumber] = useState(0);
-    const [choosenAnswer, setChoosenAnswer] = useState("");
 
     const barPercentage = ((questionNumber / questions.length) * 100) + ((1 / questions.length) * 100);
 
@@ -45,6 +48,7 @@ const QuizBody: React.FC<QuizBodyProps> = ({
                 }
             });
         }
+        setTimer(20);
     }
 
     const handleAnswer = (answer: string) => {
@@ -67,15 +71,15 @@ const QuizBody: React.FC<QuizBodyProps> = ({
                         index={index}
                         item={item}
                         handleAnswer={handleAnswer}
-                        disabled={!!choosenAnswer}
+                        disabled={!!choosenAnswer || timer === 0}
                         correctAnswer={item === currentQuestion.correct_answer && choosenAnswer === item}
                         wrongAnswer={item !== currentQuestion.correct_answer && choosenAnswer === item}
                         showCorrectAnswer={!!choosenAnswer && choosenAnswer !== currentQuestion.correct_answer && item === currentQuestion.correct_answer}
                     />
                 ))}
             </div>
-            <div className={`${css.nextButton} ${choosenAnswer ? css.active : ""}`}>
-                <button disabled={!!!choosenAnswer} onClick={handleNext}>
+            <div className={`${css.nextButton} ${choosenAnswer || timer === 0 ? css.active : ""}`}>
+                <button disabled={!!!choosenAnswer && timer > 0} onClick={handleNext}>
                     {questionNumber < questions.length - 1 ? "Next" : "Finish"}
                 </button>
             </div>
