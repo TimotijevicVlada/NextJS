@@ -1,0 +1,31 @@
+@import "styles/main.module.scss";
+
+.quizDescriptions {
+    margin-bottom: 1rem;
+    .quizHeader {
+        margin-bottom: 0.5rem;
+        background-color: $color-primary;
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 3rem;
+
+        span {
+            font-size: 1.3rem;
+            color: $color-white;
+            margin-right: 1rem;
+        }
+        svg {
+            width: 2rem;
+            height: 2rem;
+            path {
+                stroke: $color-white;
+            }
+        }
+    }
+
+    .appDescription {
+        text-indent: 2rem;
+    }
+}
