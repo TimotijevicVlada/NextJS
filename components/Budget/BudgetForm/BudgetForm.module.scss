@@ -7,7 +7,7 @@
         position: relative;
         input {
             padding: 0.7rem;
-            width: 92%;
+            width: 100%;
             background-color: transparent;
             font-size: 0.9rem;
             margin-bottom: 2rem;
@@ -50,7 +50,7 @@
 
     .transactionHeader {
         font-size: 1.2rem;
-        margin-top: 1.5rem;
+        margin: 1.5rem 0rem 1rem 0rem; 
         color: $color-gray;
     }
 

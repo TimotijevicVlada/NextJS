@@ -31,19 +31,22 @@
     }
 
     .caractersFilters {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
 
         @include respond(phone) {
+            display: flex;
             flex-direction: column;
             justify-content: unset;
+            gap: unset;
         }
 
         .search {
             input {
                 background-color: $color-gray;
                 padding: 0.7rem;
-                width: 13rem;
+                width: 100%;
                 border: none;
                 outline: none;
                 color: $color-white;
@@ -51,7 +54,6 @@
                 font-size: 1.2rem;
 
                 @include respond(phone) {
-                    width: 93%;
                     margin-bottom: 1rem;
                     padding: 0.8rem;
                 }
@@ -61,8 +63,9 @@
         .status,
         .gender {
             position: relative;
+
             .activeButton {
-                width: 14rem;
+                width: 100%;
                 font-size: 1.2rem;
                 padding: 0.7rem 1.2rem;
                 border-radius: 1rem;
@@ -76,7 +79,6 @@
                 text-transform: capitalize;
 
                 @include respond(phone) {
-                    width: 100%;
                     margin-bottom: 1rem;
                 }
 

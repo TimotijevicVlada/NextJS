@@ -1,13 +1,17 @@
 @import "styles/main.module.scss";
 
 .container {
-    width: 20rem;
+    width: 22rem;
     background-color: $color-modal-background;
     border-radius: 1.5rem;
     @include centerElement;
     flex-direction: column;
     padding: 1rem;
     gap: 1rem;
+
+    @include respond(phone) {
+        width: 90%;
+    }
 
     h2 {
         margin: 0;
@@ -31,10 +35,11 @@
             border: 0.1rem solid $color-primary;
             outline: none;
             background-color: transparent;
-            width: 6rem;
+            width: 7rem;
             padding: 0.5rem;
             color: $color-white;
             border-radius: 0.6rem;
+            font-size: 1.1rem;
 
             &:hover {
                 background-color: $color-primary;
