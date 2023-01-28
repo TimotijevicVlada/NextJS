@@ -37,7 +37,7 @@ const Home = () => {
         <div className={css.container}>
             <h1>Welcome to my skills demo app</h1>
             <p className={css.firstParagraph}>This app contains Quiz app, Budget app, Todo list and Rick and Morty characters.</p>
-            <p className={css.secondParagraph}>It's built by the following frontend technologies:</p>
+            <p className={css.secondParagraph}>It is built by the following frontend technologies:</p>
             <div className={css.icons}>
                 {tech.map((item, index) => (
                     <AppTech
